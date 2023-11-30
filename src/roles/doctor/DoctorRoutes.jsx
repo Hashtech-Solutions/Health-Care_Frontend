@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { DoctorPortal } from "./DoctorPortal";
+import { DoctorPortal } from "./portal/DoctorPortal";
 import { DoctorNavbar } from "./DoctorNavbar";
 import { DoctorProfile } from "./profile/DoctorProfile";
 import { DoctorReservations } from "./reservations/DoctorReservations";
