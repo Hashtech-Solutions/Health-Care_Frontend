@@ -1,7 +1,7 @@
 import { Grid, Paper, Box, Typography } from "@mui/material";
 import { ImageButtonContainer } from "../components/ImageButton";
-import doctorBackground from "../shared/images/doctor2.png";
-import patientBackground from "../shared/images/patient2.png";
+import doctorBackground from "../shared/images/doctor3.png";
+import patientBackground from "../shared/images/patient3.png";
 import mainBackground from "../shared/images/background.jpg";
 
 const images = [
