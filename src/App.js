@@ -2,9 +2,11 @@ import { Routes, Route } from "react-router-dom";
 import { LoginRoute } from "./routes/PrivateRoutes";
 ////////// Styles //////////
 import "./main.scss";
-////////// Shared Components //////////
+////////// Public Routes //////////
 import { Login } from "./pages/Login";
 import { Unauthorized } from "./pages/Unauthorized";
+import { PatientSignup } from "./pages/PatientSignup";
+import { DoctorSignup } from "./pages/DoctorSignup";
 import { NotFound } from "./pages/NotFound";
 ////////// Private Routes //////////
 import { DoctorRoutes } from "./roles/doctor/DoctorRoutes";
@@ -17,16 +19,18 @@ function App() {
         {/* Public Routes */}
         <Route path="" element={<Login />} exact />
         <Route path="login" element={<Login />} />
+        <Route path="signup/patient" element={<PatientSignup />} />
+        <Route path="signup/doctor" element={<DoctorSignup />} />
         <Route path="unauthorized" element={<Unauthorized />} />
-
-        {/* Patient Routes (Private) */}
-        <Route element={<LoginRoute allowedRoles={"PATIENT"} />}>
-          <Route path="patient/*" element={<PatientRoutes />} />
-        </Route>
 
         {/* Doctor Routes (Private) */}
         <Route element={<LoginRoute allowedRoles={"DOCTOR"} />}>
           <Route path="doctor/*" element={<DoctorRoutes />} />
+        </Route>
+
+        {/* Patient Routes (Private) */}
+        <Route element={<LoginRoute allowedRoles={"PATIENT"} />}>
+          <Route path="patient/*" element={<PatientRoutes />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
