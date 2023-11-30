@@ -4,9 +4,10 @@ import { LoginRoute } from "./routes/PrivateRoutes";
 import "./main.scss";
 ////////// Public Routes //////////
 import { Login } from "./pages/Login";
-import { Unauthorized } from "./pages/Unauthorized";
+import { Signup } from "./pages/Signup";
 import { PatientSignup } from "./pages/PatientSignup";
 import { DoctorSignup } from "./pages/DoctorSignup";
+import { Unauthorized } from "./pages/Unauthorized";
 import { NotFound } from "./pages/NotFound";
 ////////// Private Routes //////////
 import { DoctorRoutes } from "./roles/doctor/DoctorRoutes";
@@ -19,6 +20,7 @@ function App() {
         {/* Public Routes */}
         <Route path="" element={<Login />} exact />
         <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
         <Route path="signup/patient" element={<PatientSignup />} />
         <Route path="signup/doctor" element={<DoctorSignup />} />
         <Route path="unauthorized" element={<Unauthorized />} />
