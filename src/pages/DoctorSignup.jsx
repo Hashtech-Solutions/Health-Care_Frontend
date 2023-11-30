@@ -7,6 +7,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { Link } from "react-router-dom";
 import { LoginContainer } from "../components/LoginContainer";
 
 export const DoctorSignup = () => {
@@ -82,6 +83,7 @@ export const DoctorSignup = () => {
                 name="specialization"
                 select
                 required
+                value={""}
               >
                 <MenuItem value="Cardiologist">Cardiologist</MenuItem>
                 <MenuItem value="Dermatologist">Dermatologist</MenuItem>
@@ -131,6 +133,9 @@ export const DoctorSignup = () => {
               >
                 Sign Up
               </Button>
+            </Grid>
+            <Grid item>
+              <Link to="/login">{"Already have an account? Sign In"}</Link>
             </Grid>
           </Grid>
         </form>

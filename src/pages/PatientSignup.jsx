@@ -1,5 +1,6 @@
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { LoginContainer } from "../components/LoginContainer";
+import { Link } from "react-router-dom";
 
 export const PatientSignup = () => {
   return (
@@ -85,6 +86,9 @@ export const PatientSignup = () => {
               >
                 Sign Up
               </Button>
+            </Grid>
+            <Grid item>
+              <Link to="/login">{"Already have an account? Sign In"}</Link>
             </Grid>
           </Grid>
         </form>

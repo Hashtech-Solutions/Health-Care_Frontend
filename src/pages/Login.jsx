@@ -2,12 +2,12 @@ import {
   Avatar,
   Button,
   TextField,
-  Link,
   Box,
   Grid,
   Typography,
 } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
+import { Link } from "react-router-dom";
 import { LoginContainer } from "../components/LoginContainer";
 
 export const Login = () => {
@@ -60,9 +60,7 @@ export const Login = () => {
         </Button>
         <Grid container>
           <Grid item>
-            <Link href="signup" variant="body2">
-              {"Don't have an account? Sign Up"}
-            </Link>
+            <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
           </Grid>
         </Grid>
       </Box>
