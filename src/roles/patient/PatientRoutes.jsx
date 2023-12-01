@@ -5,6 +5,7 @@ import { PatientProfile } from "./profile/PatientProfile";
 import { PatientReservations } from "./reservations/PatientReservations";
 import { DoctorView } from "./doctor/DoctorView";
 import { DoctorsView } from "./doctors/DoctorsView";
+import { Footer } from "../../components/Footer";
 import { NotFound } from "../../pages/NotFound";
 
 export function PatientRoutes() {
@@ -19,6 +20,7 @@ export function PatientRoutes() {
         <Route path="doctors/:doctorId" element={<DoctorView />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 }

@@ -55,8 +55,6 @@ export const DoctorProfile = () => {
                   {category.name}
                 </MenuItem>
               ))}
-
-              {/* Add more specialization options as needed */}
             </TextField>
           </Grid>
           <Grid item xs={12}>

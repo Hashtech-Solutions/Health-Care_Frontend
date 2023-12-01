@@ -8,11 +8,11 @@ export const MainContainer = ({ children, title }) => {
         backgroundImage: `url(${backgroundImage})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        minHeight: "calc(100vh - 64px)",
+        minHeight: "calc(100vh - 319px)",
         width: "100%",
       }}
     >
-      <Container fixed sx={{ pt: "30px" }}>
+      <Container fixed sx={{ pt: "30px", paddingBottom: "20px" }}>
         <Typography variant="h4" gutterBottom>
           {title}
         </Typography>

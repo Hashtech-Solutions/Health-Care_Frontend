@@ -5,6 +5,7 @@ import { DoctorProfile } from "./profile/DoctorProfile";
 import { DoctorReservations } from "./reservations/DoctorReservations";
 import { AllSpecializations } from "../../pages/AllSpecializations";
 import { SingleSpecialization } from "../../pages/SingleSpecialization";
+import { Footer } from "../../components/Footer";
 import { NotFound } from "../../pages/NotFound";
 
 export function DoctorRoutes() {
@@ -19,6 +20,7 @@ export function DoctorRoutes() {
         <Route path="specializations/:id" element={<SingleSpecialization />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 }

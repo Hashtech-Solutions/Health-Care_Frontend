@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import { CategoriesPortal } from "./CategoriesPortal";
 import { ValuesPortal } from "../../../components/ValuesPortal";
 import { CarouselPortal } from "../../../components/CarouselPortal";
-import { Footer } from "../../../components/Footer";
 
 export const PatientPortal = () => {
   return (
@@ -21,7 +20,6 @@ export const PatientPortal = () => {
       />
       <ValuesPortal />
       <CategoriesPortal />
-      <Footer />
     </Box>
   );
 };

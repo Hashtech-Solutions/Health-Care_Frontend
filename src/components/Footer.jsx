@@ -46,17 +46,13 @@ export function Footer() {
             <Typography variant="h6" color="text.primary" gutterBottom>
               Follow Us
             </Typography>
-            <Link href="https://www.facebook.com/" color="inherit">
+            <Link href="#" color="inherit">
               <Facebook />
             </Link>
-            <Link
-              href="https://www.instagram.com/"
-              color="inherit"
-              sx={{ pl: 1, pr: 1 }}
-            >
+            <Link href="#" color="inherit" sx={{ pl: 1, pr: 1 }}>
               <Instagram />
             </Link>
-            <Link href="https://www.twitter.com/" color="inherit">
+            <Link href="#" color="inherit">
               <Twitter />
             </Link>
           </Grid>
@@ -64,7 +60,7 @@ export function Footer() {
         <Box mt={5}>
           <Typography variant="body2" color="text.secondary" align="center">
             {"Copyright © "}
-            <Link color="inherit" href="https://your-website.com/">
+            <Link color="inherit" href="#">
               Veezeta
             </Link>{" "}
             {new Date().getFullYear()}

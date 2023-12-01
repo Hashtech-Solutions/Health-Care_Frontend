@@ -9,6 +9,7 @@ import {
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Link } from "react-router-dom";
 import { LoginContainer } from "../components/LoginContainer";
+import { Categories } from "../shared/data/Categories";
 
 export const DoctorSignup = () => {
   return (
@@ -85,9 +86,11 @@ export const DoctorSignup = () => {
                 required
                 value={""}
               >
-                <MenuItem value="Cardiologist">Cardiologist</MenuItem>
-                <MenuItem value="Dermatologist">Dermatologist</MenuItem>
-                {/* Add more specialization options as needed */}
+                {Categories.map((category) => (
+                  <MenuItem key={category} value={category.value}>
+                    {category.name}
+                  </MenuItem>
+                ))}
               </TextField>
             </Grid>
             <Grid item xs={12}>
