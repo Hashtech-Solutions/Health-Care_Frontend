@@ -3,9 +3,9 @@ import { CardItem } from "../../../components/CardItem";
 import { CategoriesPortal } from "./CategoriesPortal";
 import { ValuesPortal } from "./ValuesPortal";
 import { CarouselPortal } from "./CarouselPortal";
+import { Footer } from "./Footer";
 
 export const PatientPortal = () => {
-  const cardItems = ["1", "2", "3", "4"];
   return (
     <Box
       sx={{
@@ -18,11 +18,7 @@ export const PatientPortal = () => {
       <CarouselPortal />
       <ValuesPortal />
       <CategoriesPortal />
-      <Grid container spacing={4} sx={{ padding: "50px" }}>
-        {cardItems.map((item, index) => (
-          <CardItem key={index} text={item} />
-        ))}
-      </Grid>
+      <Footer />
     </Box>
   );
 };
