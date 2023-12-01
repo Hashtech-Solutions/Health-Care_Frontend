@@ -16,3 +16,10 @@ a {
     color: purple;
   }
 }
+
+.MuiDivider-root {
+  margin: 0 0 2rem 0 !important;
+  width: 60px;
+  border: 4px solid var(--primary) !important;
+  border-radius: 15%;
+}

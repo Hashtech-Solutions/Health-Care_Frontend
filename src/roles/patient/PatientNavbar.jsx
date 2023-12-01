@@ -131,10 +131,10 @@ export const PatientNavbar = () => {
             <Button
               color="inherit"
               onClick={() => {
-                navigate("/patient/profile");
+                navigate("/patient/doctors");
               }}
             >
-              Profile
+              Doctors
             </Button>
             <Button
               color="inherit"
@@ -147,15 +147,18 @@ export const PatientNavbar = () => {
             <Button
               color="inherit"
               onClick={() => {
-                navigate("/patient/doctors");
+                navigate("/patient/profile");
               }}
             >
-              Doctors
+              Profile
             </Button>
             <Button
               color="inherit"
               onClick={() => {
                 authContext.logout();
+              }}
+              sx={{
+                ml: "30px",
               }}
             >
               Logout

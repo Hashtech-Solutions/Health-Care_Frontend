@@ -1,5 +1,5 @@
-import React from "react";
+import { MainContainer } from "../../../components/MainContainer";
 
 export const PatientReservations = () => {
-  return <div>PatientReservations</div>;
+  return <MainContainer title="Appointments"></MainContainer>;
 };
