@@ -77,6 +77,7 @@ export const ImageButtonContainer = ({ image }) => {
         flexWrap: "wrap",
         minWidth: 300,
         width: "100%",
+        height: "100%",
       }}
       onClick={() => {
         navigate(image.link);
@@ -86,7 +87,8 @@ export const ImageButtonContainer = ({ image }) => {
         focusRipple
         key={image.title}
         style={{
-          width: image.width,
+          width: "100%",
+          height: "100%",
         }}
       >
         <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
