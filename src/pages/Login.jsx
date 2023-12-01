@@ -22,7 +22,7 @@ export const Login = () => {
 
   return (
     <LoginContainer>
-      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+      <Avatar sx={{ m: 1, bgcolor: "#1976d2" }}>
         <LoginIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
