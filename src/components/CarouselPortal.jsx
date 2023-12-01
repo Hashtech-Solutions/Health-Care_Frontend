@@ -30,6 +30,7 @@ export const CarouselPortal = ({ title, buttonText, buttonLink }) => {
           alignItems: "center",
           gap: "20px",
           textAlign: "center",
+          pointerEvents: "none",
         }}
       >
         <Typography
@@ -39,6 +40,7 @@ export const CarouselPortal = ({ title, buttonText, buttonLink }) => {
             textShadow: "3px 3px 3px black",
             fontWeight: "bold",
             fontSize: "3rem",
+            pointerEvents: "auto",
           }}
         >
           {title}
@@ -48,6 +50,7 @@ export const CarouselPortal = ({ title, buttonText, buttonLink }) => {
           color="primary"
           sx={{
             fontSize: "1.2rem",
+            pointerEvents: "auto",
           }}
           onClick={() => {
             navigate(buttonLink);
