@@ -7,6 +7,11 @@ import gastroenterologyImage from "../images/gastroenterology.jpg";
 import ophthalmologyImage from "../images/ophthalmology.jpg";
 import psychiatryImage from "../images/psychiatry.jpg";
 import obstetricsImage from "../images/obstetrics.jpg";
+import cairdologyBgImage from "../images/cardiologybg.jpg";
+import orthopedicsBgImage from "../images/orthopedicsbg.jpg";
+import neurologyBgImage from "../images/neurologybg.jpg";
+import pediatricsBgImage from "../images/pediatricsbg.jpg";
+import psychiatryBgImage from "../images/psychiatrybg.jpg";
 
 export const Categories = [
   {
@@ -14,7 +19,7 @@ export const Categories = [
     name: "Cardiology",
     value: "cardiology",
     image: cardiologyImage,
-    backgroundImage: cardiologyImage,
+    backgroundImage: cairdologyBgImage,
     description:
       "Cardiology is a branch of medicine that deals with the disorders of the heart as well as some parts of the circulatory system. The field includes medical diagnosis and treatment of congenital heart defects, coronary artery disease, heart failure, valvular heart disease and electrophysiology.",
     width: "40%",
@@ -34,7 +39,7 @@ export const Categories = [
     name: "Orthopedics",
     value: "orthopedics",
     image: orthopedicsImage,
-    backgroundImage: orthopedicsImage,
+    backgroundImage: orthopedicsBgImage,
     description:
       "Orthopedics is a medical specialty that focuses on the diagnosis, correction, prevention, and treatment of patients with skeletal deformities - disorders of the bones, joints, muscles, ligaments, tendons, nerves and skin.",
     width: "40%",
@@ -44,7 +49,7 @@ export const Categories = [
     name: "Neurology",
     value: "neurology",
     image: neurologyImage,
-    backgroundImage: neurologyImage,
+    backgroundImage: neurologyBgImage,
     description:
       "Neurology is a branch of medicine dealing with disorders of the nervous system. Neurology deals with the diagnosis and treatment of all categories of conditions and disease involving the central and peripheral nervous system (and its subdivisions, the autonomic nervous system and the somatic nervous system); including their coverings, blood vessels, and all effector tissue, such as muscle. Neurological practice relies heavily on the field of neuroscience, the scientific study of the nervous system.",
     width: "38%",
@@ -54,7 +59,7 @@ export const Categories = [
     name: "Pediatrics",
     value: "pediatrics",
     image: pediatricsImage,
-    backgroundImage: pediatricsImage,
+    backgroundImage: pediatricsBgImage,
     description:
       "Pediatrics is the branch of medicine that involves the medical care of infants, children, and adolescents. The American Academy of Pediatrics recommends people be under pediatric care through the age of 21. In the United Kingdom, pediatrics covers patients until age 18.",
     width: "38%",
@@ -64,7 +69,7 @@ export const Categories = [
     name: "Psychiatry",
     value: "psychiatry",
     image: psychiatryImage,
-    backgroundImage: psychiatryImage,
+    backgroundImage: psychiatryBgImage,
     description:
       "Psychiatry is the medical specialty devoted to the diagnosis, prevention, and treatment of mental disorders. These include various maladaptations related to mood, behaviour, cognition, and perceptions. See glossary of psychiatry. Initial psychiatric assessment of a person typically begins with a case history and mental status examination. Physical examinations and psychological tests may be conducted. On occasion, neuroimaging or other neurophysiological techniques are used.",
     width: "24%",
