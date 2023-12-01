@@ -1,14 +1,14 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Box, Typography, Button } from "@mui/material";
-import carousel1 from "../../../shared/images/carousel1.jpg";
-import carousel2 from "../../../shared/images/carousel2.jpg";
-import carousel3 from "../../../shared/images/carousel3.jpg";
-import carousel4 from "../../../shared/images/carousel4.jpg";
-import carousel5 from "../../../shared/images/carousel5.jpg";
+import carousel1 from "../shared/images/carousel1.jpg";
+import carousel2 from "../shared/images/carousel2.jpg";
+import carousel3 from "../shared/images/carousel3.jpg";
+import carousel4 from "../shared/images/carousel4.jpg";
+import carousel5 from "../shared/images/carousel5.jpg";
 import { useNavigate } from "react-router";
 
-export const CarouselPortal = () => {
+export const CarouselPortal = ({ title, buttonText, buttonLink }) => {
   const navigate = useNavigate();
   const images = [carousel1, carousel2, carousel3, carousel4, carousel5];
 
@@ -41,7 +41,7 @@ export const CarouselPortal = () => {
             fontSize: "3rem",
           }}
         >
-          MAKE YOUR APPOINTMENT
+          {title}
         </Typography>
         <Button
           variant="contained"
@@ -50,10 +50,10 @@ export const CarouselPortal = () => {
             fontSize: "1.2rem",
           }}
           onClick={() => {
-            navigate("/patient/doctors");
+            navigate(buttonLink);
           }}
         >
-          Book Now!
+          {buttonText}
         </Button>
       </Box>
 
