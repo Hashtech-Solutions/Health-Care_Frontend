@@ -124,7 +124,7 @@ export const PatientNavbar = () => {
               navigate("/patient");
             }}
           >
-            VEZEETA
+            Health Care
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
