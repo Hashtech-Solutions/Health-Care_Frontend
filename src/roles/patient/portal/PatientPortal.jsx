@@ -1,9 +1,8 @@
-import { Grid, Box } from "@mui/material";
-import { CardItem } from "../../../components/CardItem";
+import { Box } from "@mui/material";
 import { CategoriesPortal } from "./CategoriesPortal";
 import { ValuesPortal } from "../../../components/ValuesPortal";
 import { CarouselPortal } from "../../../components/CarouselPortal";
-import { Footer } from "./Footer";
+import { Footer } from "../../../components/Footer";
 
 export const PatientPortal = () => {
   return (
