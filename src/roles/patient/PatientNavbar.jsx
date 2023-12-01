@@ -10,6 +10,10 @@ const NavItems = [
     path: "/patient/doctors",
   },
   {
+    title: "Specializations",
+    path: "/patient/specializations",
+  },
+  {
     title: "Profile",
     path: "/patient/profile",
   },
