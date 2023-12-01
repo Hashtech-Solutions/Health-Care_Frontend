@@ -3,8 +3,9 @@ import { PatientPortal } from "./portal/PatientPortal";
 import { PatientNavbar } from "./PatientNavbar";
 import { PatientProfile } from "./profile/PatientProfile";
 import { PatientReservations } from "./reservations/PatientReservations";
-import { NotFound } from "../../pages/NotFound";
 import { DoctorView } from "./doctor/DoctorView";
+import { DoctorsView } from "./doctors/DoctorsView";
+import { NotFound } from "../../pages/NotFound";
 
 export function PatientRoutes() {
   return (
@@ -13,8 +14,9 @@ export function PatientRoutes() {
       <Routes>
         <Route path="" element={<PatientPortal />} />
         <Route path="profile" element={<PatientProfile />} />
-        <Route path="reservations" element={<PatientReservations />} />
-        <Route path="doctor/:doctorId" element={<DoctorView />} />
+        <Route path="appointments" element={<PatientReservations />} />
+        <Route path="doctors" element={<DoctorsView />} />
+        <Route path="doctors/:doctorId" element={<DoctorView />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

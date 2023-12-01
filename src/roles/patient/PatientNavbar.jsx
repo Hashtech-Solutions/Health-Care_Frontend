@@ -93,7 +93,7 @@ export const PatientNavbar = () => {
       <MenuItem>
         <p
           onClick={() => {
-            navigate("/patient");
+            navigate("/patient/doctors");
           }}
         >
           Doctors
@@ -119,7 +119,10 @@ export const PatientNavbar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { sm: "block" } }}
+            sx={{ display: { sm: "block" }, cursor: "pointer" }}
+            onClick={() => {
+              navigate("/patient");
+            }}
           >
             VEZEETA
           </Typography>
@@ -144,7 +147,7 @@ export const PatientNavbar = () => {
             <Button
               color="inherit"
               onClick={() => {
-                navigate("/patient");
+                navigate("/patient/doctors");
               }}
             >
               Doctors
