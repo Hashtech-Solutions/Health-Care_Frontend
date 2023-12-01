@@ -7,7 +7,6 @@ const item = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  px: 5,
 };
 
 const valuesData = [

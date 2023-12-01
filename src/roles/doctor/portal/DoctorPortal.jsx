@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { ValuesPortal } from "../../../components/ValuesPortal";
 import { CarouselPortal } from "../../../components/CarouselPortal";
+import { CategoriesPortal } from "../../patient/portal/CategoriesPortal";
 
 export const DoctorPortal = () => {
   return (
@@ -18,6 +19,7 @@ export const DoctorPortal = () => {
         buttonLink="/doctor/appointments"
       />
       <ValuesPortal />
+      <CategoriesPortal />
     </Box>
   );
 };

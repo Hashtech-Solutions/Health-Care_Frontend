@@ -51,7 +51,7 @@ export const DoctorProfile = () => {
               value={""}
             >
               {Categories.map((category) => (
-                <MenuItem key={category} value={category.value}>
+                <MenuItem key={category.id} value={category.value}>
                   {category.name}
                 </MenuItem>
               ))}
