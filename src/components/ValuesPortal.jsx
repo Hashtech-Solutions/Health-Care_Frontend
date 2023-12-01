@@ -49,7 +49,7 @@ export const ValuesPortal = () => {
           alt="curvy lines"
           sx={{ pointerEvents: "none", position: "absolute", top: -180 }}
         />
-        <Grid container spacing={5}>
+        <Grid container spacing={8}>
           {valuesData.map((value, index) => (
             <Grid item xs={12} md={4} key={index}>
               <Box sx={item}>
@@ -65,7 +65,10 @@ export const ValuesPortal = () => {
                 >
                   {value.title}
                 </Typography>
-                <Typography variant="h6" sx={{ color: "black" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ color: "black", textAlign: "justify" }}
+                >
                   {value.description}
                 </Typography>
               </Box>
