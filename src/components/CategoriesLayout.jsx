@@ -1,6 +1,8 @@
 import { styled } from "@mui/material/styles";
 import { Box, ButtonBase, Typography } from "@mui/material";
 import { Categories } from "../shared/data/Categories";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const ImageBackdrop = styled("div")(({ theme }) => ({
   position: "absolute",
@@ -51,6 +53,9 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 }));
 
 export const CategoriesLayout = () => {
+  const authContext = useAuth();
+  const navigate = useNavigate();
+
   return (
     <Box sx={{ mt: 8, display: "flex", flexWrap: "wrap" }}>
       {Categories.map((image) => (
@@ -58,6 +63,13 @@ export const CategoriesLayout = () => {
           key={image.name}
           style={{
             width: image.width,
+          }}
+          onClick={() => {
+            if (authContext.role === "PATIENT") {
+              navigate(`/patient/specializations/${image.value}`);
+            } else {
+              navigate(`/doctor/specializations/${image.value}`);
+            }
           }}
         >
           <Box

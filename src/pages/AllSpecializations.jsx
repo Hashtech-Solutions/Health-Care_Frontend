@@ -3,7 +3,7 @@ import { CategoriesLayout } from "../components/CategoriesLayout";
 
 export const AllSpecializations = () => {
   return (
-    <MainContainer title="Specilizations">
+    <MainContainer title="Specializations">
       <CategoriesLayout />
     </MainContainer>
   );
