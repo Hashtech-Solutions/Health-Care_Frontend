@@ -1,4 +1,7 @@
 import { Box, Grid, Container, Typography } from "@mui/material";
+import aid from "../../../shared/images/aid.png";
+import calender from "../../../shared/images/calender.png";
+import booking from "../../../shared/images/booking.png";
 
 const item = {
   display: "flex",
@@ -31,21 +34,17 @@ export const ValuesPortal = () => {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues1.svg"
-                alt="suitcase"
+                src={booking}
+                alt="Booking"
                 sx={{ height: 55 }}
               />
-              <Typography variant="h6" sx={{ my: 5 }}>
-                The best luxury hotels
+              <Typography variant="h5" sx={{ my: 5, fontWeight: "bold" }}>
+                Effortless Booking
               </Typography>
-              <Typography variant="h5">
-                {
-                  "From the latest trendy boutique hotel to the iconic palace with XXL pool"
-                }
-
-                {
-                  ", go for a mini-vacation just a few subway stops away from your home."
-                }
+              <Typography variant="h6">
+                Simplify your clinic visits with our easy-to-use reservation
+                system. Book appointments seamlessly, check in online, and
+                minimize wait times for a hassle-free experience.
               </Typography>
             </Box>
           </Grid>
@@ -53,19 +52,17 @@ export const ValuesPortal = () => {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues2.svg"
-                alt="graph"
+                src={calender}
+                alt="Calender"
                 sx={{ height: 55 }}
               />
-              <Typography variant="h6" sx={{ my: 5 }}>
-                New experiences
+              <Typography variant="h5" sx={{ my: 5, fontWeight: "bold" }}>
+                Flexible Scheduling
               </Typography>
-              <Typography variant="h5">
-                {
-                  "Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… "
-                }
-
-                {"your Sundays will not be alike."}
+              <Typography variant="h6">
+                Take control of your health journey. Our website offers
+                convenient and patient-friendly scheduling options, allowing you
+                to book appointments.
               </Typography>
             </Box>
           </Grid>
@@ -73,16 +70,17 @@ export const ValuesPortal = () => {
             <Box sx={item}>
               <Box
                 component="img"
-                src="/static/themes/onepirate/productValues3.svg"
-                alt="clock"
+                src={aid}
+                alt="First Aid Kit"
                 sx={{ height: 55 }}
               />
-              <Typography variant="h6" sx={{ my: 5 }}>
-                Exclusive rates
+              <Typography variant="h5" sx={{ my: 5, fontWeight: "bold" }}>
+                On-the-Go Healthcare
               </Typography>
-              <Typography variant="h5">
-                {"By registering, you will access specially negotiated rates "}
-                {"that you will not find anywhere else."}
+              <Typography variant="h6">
+                Access healthcare anytime, anywhere. Our reservation platform
+                enables quick and secure online bookings, providing you with the
+                flexibility.
               </Typography>
             </Box>
           </Grid>
