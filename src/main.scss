@@ -1,8 +1,18 @@
+:root {
+  --primary: #1976d2;
+}
+
 body {
   margin: 0;
   padding: 0;
 }
+
 a {
-  color: red;
+  color: var(--primary);
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: purple;
+  }
 }
