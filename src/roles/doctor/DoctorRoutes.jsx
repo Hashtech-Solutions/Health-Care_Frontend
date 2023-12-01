@@ -3,6 +3,8 @@ import { DoctorPortal } from "./portal/DoctorPortal";
 import { DoctorNavbar } from "./DoctorNavbar";
 import { DoctorProfile } from "./profile/DoctorProfile";
 import { DoctorReservations } from "./reservations/DoctorReservations";
+import { AllSpecializations } from "../../pages/AllSpecializations";
+import { SingleSpecialization } from "../../pages/SingleSpecialization";
 import { NotFound } from "../../pages/NotFound";
 
 export function DoctorRoutes() {
@@ -12,7 +14,9 @@ export function DoctorRoutes() {
       <Routes>
         <Route path="" element={<DoctorPortal />} />
         <Route path="profile" element={<DoctorProfile />} />
-        <Route path="reservations" element={<DoctorReservations />} />
+        <Route path="appointments" element={<DoctorReservations />} />
+        <Route path="specializations" element={<AllSpecializations />} />
+        <Route path="specializations/:id" element={<SingleSpecialization />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

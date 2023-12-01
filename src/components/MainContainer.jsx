@@ -8,7 +8,7 @@ export const MainContainer = ({ children, title }) => {
         backgroundImage: `url(${backgroundImage})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        height: "calc(100vh - 64px)",
+        minHeight: "calc(100vh - 64px)",
         width: "100%",
       }}
     >
