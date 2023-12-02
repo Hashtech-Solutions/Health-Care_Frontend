@@ -16,7 +16,7 @@ export const PatientPortal = () => {
       <CarouselPortal
         title="MAKE YOUR APPOINTMENT"
         buttonText="BOOK NOW!"
-        buttonLink="/patient/docotrs"
+        buttonLink="/patient/doctors"
       />
       <ValuesPortal />
       <CategoriesPortal />
