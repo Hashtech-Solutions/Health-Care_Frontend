@@ -6,7 +6,8 @@ const AuthContext = createContext({
   token: "",
   isLoggedIn: false,
   role: "",
-  login: (id, token, role) => {},
+  userData: {},
+  login: (id, token, role, userData) => {},
   logout: () => {},
 });
 
@@ -15,28 +16,38 @@ export const AuthContextProvider = (props) => {
   const storageRole = cookies.get("role");
   const storageId = cookies.get("id");
 
+  let userData = {};
+  if (cookies.get("user") !== undefined) {
+    userData = JSON.parse(cookies.get("user"));
+  }
+
   const [token, setToken] = useState(storageToken);
   const [role, setRole] = useState(storageRole);
   const [id, setId] = useState(storageId);
+  const [user, setUser] = useState(userData);
 
   const userIsLoggedIn = !!token;
 
-  const loginHandler = (id, token, role) => {
+  const loginHandler = (id, token, role, userData) => {
     cookies.set("id", id);
     cookies.set("token", token);
     cookies.set("role", role);
+    cookies.set("user", JSON.stringify(userData));
     setId(id);
     setRole(role);
     setToken(token);
+    setUser(userData);
   };
 
   const logoutHandler = () => {
     cookies.remove("id");
     cookies.remove("token");
     cookies.remove("role");
+    cookies.remove("user");
     setId(null);
     setRole(null);
     setToken(null);
+    setUser(null);
   };
 
   const contextValue = {
@@ -44,6 +55,7 @@ export const AuthContextProvider = (props) => {
     token: token,
     isLoggedIn: userIsLoggedIn,
     role: role,
+    userData: user,
     login: loginHandler,
     logout: logoutHandler,
   };

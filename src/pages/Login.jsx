@@ -1,3 +1,8 @@
+import axios from "axios";
+import { useAuth } from "../hooks/useAuth";
+import { BASE_URL } from "../shared/API";
+
+// Components
 import {
   Avatar,
   Button,
@@ -11,13 +16,23 @@ import { Link } from "react-router-dom";
 import { LoginContainer } from "../components/LoginContainer";
 
 export const Login = () => {
+  const authContext = useAuth();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    axios
+      .post(`${BASE_URL}/login`, {
+        email: data.get("email"),
+        password: data.get("password"),
+      })
+      .then((res) => {
+        console.log(res);
+        // authContext.login(res.id, res.token, res.role, res.userData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
