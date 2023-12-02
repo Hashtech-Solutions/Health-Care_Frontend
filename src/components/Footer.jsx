@@ -1,4 +1,3 @@
-import * as React from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
@@ -61,7 +60,7 @@ export function Footer() {
           <Typography variant="body2" color="white" align="center">
             {"Copyright © "}
             <Link color="inherit" href="#">
-              Veezeta
+              Health Care
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}

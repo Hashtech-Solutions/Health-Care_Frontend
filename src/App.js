@@ -3,6 +3,7 @@ import { LoginRoute } from "./routes/PrivateRoutes";
 ////////// Styles //////////
 import "./main.scss";
 ////////// Public Routes //////////
+import { PublicRoutes } from "./roles/public/PublicRoutes";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { PatientSignup } from "./pages/PatientSignup";
@@ -18,7 +19,8 @@ function App() {
     <div className="App">
       <Routes>
         {/* Public Routes */}
-        <Route path="" element={<Login />} exact />
+        <Route path="" element={<PublicRoutes />} exact />
+        <Route path="portal/*" element={<PublicRoutes />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="signup/patient" element={<PatientSignup />} />

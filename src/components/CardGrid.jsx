@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import * as React from "react";
 import { CardItem } from "./CardItem";
 
 const names = [

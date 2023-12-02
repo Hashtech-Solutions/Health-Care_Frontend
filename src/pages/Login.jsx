@@ -37,7 +37,7 @@ export const Login = () => {
       })
       .then((res) => {
         console.log(res);
-        // authContext.login(res.id, res.token, res.role, res.userData);
+        authContext.login(res.id, res.token, res.role, res.userData);
         setLoader(false);
         if (res.data.role === "PATIENT") {
           navigate("/patient");

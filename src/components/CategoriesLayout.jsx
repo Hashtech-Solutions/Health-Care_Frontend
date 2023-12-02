@@ -55,6 +55,12 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 export const CategoriesLayout = () => {
   const authContext = useAuth();
   const navigate = useNavigate();
+  const currLocation =
+    authContext.role === "PATIENT"
+      ? "patient"
+      : authContext.role === "DOCTOR"
+      ? "doctor"
+      : "portal";
 
   return (
     <Box sx={{ mt: 8, display: "flex", flexWrap: "wrap" }}>
@@ -65,11 +71,7 @@ export const CategoriesLayout = () => {
             width: image.width,
           }}
           onClick={() => {
-            if (authContext.role === "PATIENT") {
-              navigate(`/patient/specializations/${image.value}`);
-            } else {
-              navigate(`/doctor/specializations/${image.value}`);
-            }
+            navigate(`/${currLocation}/specializations/${image.value}`);
           }}
         >
           <Box
