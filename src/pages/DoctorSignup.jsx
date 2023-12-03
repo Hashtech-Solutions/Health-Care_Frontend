@@ -23,6 +23,10 @@ import { BackdropLoader } from "../components/BackdropLoader";
 export const DoctorSignup = () => {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
+  const [specialization, setSpecialization] = useState({
+    id: "",
+    name: "",
+  });
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -30,17 +34,17 @@ export const DoctorSignup = () => {
     setLoader(true);
     setError(false);
     const data = new FormData(event.currentTarget);
-
     axios
       .post(`${BASE_URL}/doctor/register`, {
         firstName: data.get("firstName"),
         lastName: data.get("lastName"),
-        clinicPhoneNumber: data.get("clinicPhoneNumber"),
-        clinicEmail: data.get("clinicEmail"),
+        phoneNumber: data.get("phoneNumber"),
+        email: data.get("email"),
         dateOfBirth: data.get("dateOfBirth"),
-        specialization: data.get("specialization"),
-        clinicAddress: data.get("clinicAddress"),
-        workplace: data.get("workplace"),
+        address: data.get("address"),
+        // specialization: specialization
+        // change city to workplace
+        city: data.get("workplace"),
         fees: data.get("fees"),
         password: data.get("password"),
       })
@@ -104,7 +108,7 @@ export const DoctorSignup = () => {
                 <TextField
                   fullWidth
                   label="Clinic Phone Number"
-                  name="clinicPhoneNumber"
+                  name="phoneNumber"
                   required
                 />
               </Grid>
@@ -112,7 +116,7 @@ export const DoctorSignup = () => {
                 <TextField
                   fullWidth
                   label="Clinic Email"
-                  name="clinicEmail"
+                  name="email"
                   required
                 />
               </Grid>
@@ -135,10 +139,16 @@ export const DoctorSignup = () => {
                   name="specialization"
                   select
                   required
-                  value={""}
+                  value={specialization.id}
+                  onChange={(e) =>
+                    setSpecialization({
+                      id: e.target.value,
+                      name: e.target.value,
+                    })
+                  }
                 >
                   {Categories.map((category) => (
-                    <MenuItem key={category} value={category.value}>
+                    <MenuItem key={category.id} value={category.name}>
                       {category.name}
                     </MenuItem>
                   ))}
@@ -148,7 +158,7 @@ export const DoctorSignup = () => {
                 <TextField
                   fullWidth
                   label="Clinic Address"
-                  name="clinicAddress"
+                  name="address"
                   required
                 />
               </Grid>

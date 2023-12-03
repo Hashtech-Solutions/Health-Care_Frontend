@@ -9,6 +9,7 @@ const AuthContext = createContext({
   userData: {},
   login: (id, token, role, userData) => {},
   logout: () => {},
+  userDataHandler: (userData) => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -50,6 +51,11 @@ export const AuthContextProvider = (props) => {
     setUser(null);
   };
 
+  const userDataHandler = (userData) => {
+    cookies.set("user", JSON.stringify(userData));
+    setUser(userData);
+  };
+
   const contextValue = {
     id: id,
     token: token,
@@ -58,6 +64,7 @@ export const AuthContextProvider = (props) => {
     userData: user,
     login: loginHandler,
     logout: logoutHandler,
+    userDataHandler: userDataHandler,
   };
 
   return (

@@ -31,9 +31,9 @@ export const PatientSignup = () => {
       .post(`${BASE_URL}/user/register`, {
         firstName: data.get("firstName"),
         lastName: data.get("lastName"),
-        mobileNumber: data.get("mobileNumber"),
+        phoneNumber: data.get("mobileNumber"),
         nationalId: data.get("nationalId"),
-        dateOfBirth: data.get("dateOfBirth"),
+        dateOfBirth: new Date(data.get("dateOfBirth")).toISOString(),
         email: data.get("email"),
         password: data.get("password"),
       })
