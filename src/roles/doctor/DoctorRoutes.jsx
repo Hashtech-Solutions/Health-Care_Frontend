@@ -5,6 +5,7 @@ import { DoctorProfile } from "./profile/DoctorProfile";
 import { DoctorReservations } from "./reservations/DoctorReservations";
 import { AllSpecializations } from "../../pages/AllSpecializations";
 import { SingleSpecialization } from "../../pages/SingleSpecialization";
+import { Clinic } from "./clinic/Clinic";
 import { Footer } from "../../components/Footer";
 import { NotFound } from "../../pages/NotFound";
 
@@ -15,6 +16,7 @@ export function DoctorRoutes() {
       <Routes>
         <Route path="" element={<DoctorPortal />} />
         <Route path="profile" element={<DoctorProfile />} />
+        <Route path="clinic" element={<Clinic />} />
         <Route path="appointments" element={<DoctorReservations />} />
         <Route path="specializations" element={<AllSpecializations />} />
         <Route path="specializations/:id" element={<SingleSpecialization />} />
