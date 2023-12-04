@@ -23,7 +23,7 @@ export function Footer() {
               About Us
             </Typography>
             <Typography variant="body2" color="white">
-              We are Veezeta, dedicated to providing the best service to our
+              We are Health Care, dedicated to providing the best service to our
               customers.
             </Typography>
           </Grid>

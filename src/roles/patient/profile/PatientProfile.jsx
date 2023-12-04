@@ -75,7 +75,7 @@ export const PatientProfile = () => {
                 label="First Name"
                 name="firstName"
                 required
-                value={userData.firstName}
+                value={userData.firstName || ""}
                 onChange={handleFieldChange}
               />
             </Grid>
@@ -85,7 +85,7 @@ export const PatientProfile = () => {
                 label="Last Name"
                 name="lastName"
                 required
-                value={userData.lastName}
+                value={userData.lastName || ""}
                 onChange={handleFieldChange}
               />
             </Grid>
@@ -95,7 +95,7 @@ export const PatientProfile = () => {
                 label="Mobile Number"
                 name="phoneNumber"
                 type="number"
-                value={userData.phoneNumber}
+                value={userData.phoneNumber || ""}
                 onChange={handleFieldChange}
                 required
               />
@@ -106,7 +106,7 @@ export const PatientProfile = () => {
                 label="National ID"
                 name="nationalId"
                 type="number"
-                value={userData.nationalId}
+                value={userData.nationalId || ""}
                 onChange={handleFieldChange}
                 required
               />
@@ -116,7 +116,7 @@ export const PatientProfile = () => {
                 fullWidth
                 label="Date of Birth"
                 name="dateOfBirth"
-                value={userData.dateOfBirth}
+                value={userData.dateOfBirth || ""}
                 onChange={handleFieldChange}
                 type="date"
                 required
@@ -131,7 +131,7 @@ export const PatientProfile = () => {
                 label="Email"
                 name="email"
                 type="email"
-                value={userData.email}
+                value={userData.email || ""}
                 onChange={handleFieldChange}
                 required
               />

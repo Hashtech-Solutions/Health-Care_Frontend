@@ -18,7 +18,7 @@ export const DoctorProfile = () => {
     id: authContext.userData.specializationId,
     name: Categories.find(
       (category) => category.id === authContext.userData.specializationId
-    ).name,
+    )?.name,
   });
 
   const handleFieldChange = (event) => {
@@ -86,7 +86,7 @@ export const DoctorProfile = () => {
                 label="First Name"
                 name="firstName"
                 required
-                value={userData.firstName}
+                value={userData.firstName || ""}
                 onChange={handleFieldChange}
               />
             </Grid>
@@ -96,7 +96,7 @@ export const DoctorProfile = () => {
                 label="Last Name"
                 name="lastName"
                 required
-                value={userData.lastName}
+                value={userData.lastName || ""}
                 onChange={handleFieldChange}
               />
             </Grid>
@@ -105,7 +105,7 @@ export const DoctorProfile = () => {
                 fullWidth
                 label="Clinic Phone Number"
                 name="phoneNumber"
-                value={userData.phoneNumber}
+                value={userData.phoneNumber || ""}
                 onChange={handleFieldChange}
                 required
               />
@@ -115,7 +115,7 @@ export const DoctorProfile = () => {
                 fullWidth
                 label="Clinic Email"
                 name="email"
-                value={userData.email}
+                value={userData.email || ""}
                 onChange={handleFieldChange}
                 required
               />
@@ -126,7 +126,7 @@ export const DoctorProfile = () => {
                 label="Date of Birth"
                 name="dateOfBirth"
                 type="date"
-                value={userData.dateOfBirth}
+                value={userData.dateOfBirth || ""}
                 onChange={handleFieldChange}
                 required
                 InputLabelProps={{
@@ -141,7 +141,7 @@ export const DoctorProfile = () => {
                 name="specialization"
                 select
                 required
-                value={specialization.id}
+                value={specialization.id || ""}
                 onChange={(e) =>
                   setSpecialization({
                     id: e.target.value,
@@ -161,7 +161,7 @@ export const DoctorProfile = () => {
                 fullWidth
                 label="Clinic Address"
                 name="address"
-                value={userData.address}
+                value={userData.address || ""}
                 onChange={handleFieldChange}
                 required
               />
@@ -171,7 +171,7 @@ export const DoctorProfile = () => {
                 fullWidth
                 label="Workplace"
                 name="workplace"
-                value={userData.workplace}
+                value={userData.workplace || ""}
                 onChange={handleFieldChange}
                 required
               />
@@ -182,7 +182,7 @@ export const DoctorProfile = () => {
                 label="Fees"
                 name="fees"
                 type="number"
-                value={userData.fees}
+                value={userData.fees || ""}
                 onChange={handleFieldChange}
                 required
               />
