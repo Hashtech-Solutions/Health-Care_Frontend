@@ -1,8 +1,10 @@
 import { Grid } from "@mui/material";
+import * as React from "react";
 import { ProfileCard } from "./ProfileCard";
 
-const names = [
+const doctors = [
   {
+    id: 1,
     name: "Steven",
     specialization: "Cardiology",
     fees: "100",
@@ -10,6 +12,7 @@ const names = [
     phone: "1234567890",
   },
   {
+    id: 2,
     name: "John",
     specialization: "Dentistry",
     fees: "200",
@@ -17,6 +20,7 @@ const names = [
     phone: "1234567890",
   },
   {
+    id: 3,
     name: "Mary",
     specialization: "Dermatology",
     fees: "300",
@@ -25,17 +29,19 @@ const names = [
   },
 ];
 
-export const CardGrid = () => {
+export const DoctorsGrid = () => {
   return (
     <Grid container spacing={2} sx={{ paddingTop: "50px" }}>
-      {names.map((name) => (
-        <ProfileCard isClickable={true}
-          name={name.name}
-          specialization={name.specialization}
-          fees={name.fees}
-          address={name.address}
-          phone={name.phone}
-          key={name.name}
+      {doctors.map((doctor) => (
+        <ProfileCard
+          name={doctor.name}
+          specialization={doctor.specialization}
+          fees={doctor.fees}
+          address={doctor.address}
+          phone={doctor.phone}
+          key={doctor.name}
+          id={doctor.id}
+          isClickable={true}
         />
       ))}
     </Grid>

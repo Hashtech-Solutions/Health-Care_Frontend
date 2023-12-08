@@ -1,14 +1,17 @@
 import { Grid, Typography, CardActionArea } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-export const CardItem = (props) => {
+export const ProfileCard = (props) => {
+  const navigate = useNavigate();
   return (
     <Grid item xs={12} sm={12} md={6} lg={6}>
       <CardActionArea
-        onClick={() => console.log("Card clicked!")}
+        disabled={!props.isClickable}
+        onClick={() => navigate(`/patient/doctors/${props.id}`)}
         sx={{
           borderRadius: "20px",
           boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-          cursor: "pointer",
+          cursor: props.isClickable ? "pointer" : "default",
         }}
       >
         <Grid
@@ -64,6 +67,6 @@ export const CardItem = (props) => {
           {/* Add more Grid items for other columns if needed */}
         </Grid>
       </CardActionArea>
-    </Grid>
+    </Grid >
   );
 };
