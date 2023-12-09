@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../shared/API";
 import { Days } from "../../../shared/data/Days";
+import { useAuth } from "../../../hooks/useAuth";
 
 // Components
 import {
@@ -25,31 +26,41 @@ export const Clinic = () => {
   const [period, setPeriod] = useState(0);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
+  const authContext = useAuth();
+
+  const timeFormatter = (timestamp) => {
+    const date = new Date(timestamp);
+    const formattedTime = date.toLocaleTimeString("en-US", {
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return formattedTime;
+  };
 
   const handleSave = (event) => {
     event.preventDefault();
     setLoader(true);
     setError(false);
     const clinicData = {
-      availableDays,
-      openingTime,
-      closingTime,
-      period,
+      // availableDays,
+      workingHoursStart: timeFormatter(openingTime),
+      workingHoursEnd: timeFormatter(closingTime),
+      bookingDuration: (period === 0 ? 15 : period) / 60,
     };
-    console.log(clinicData);
-
-    // axios
-    //   .put(`${BASE_URL}/doctor/edit/${userData.id}`, updatedData)
-    //   .then((res) => {
-    //     console.log(res);
-    //     authContext.userDataHandler(userData);
-    //     setLoader(false);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setError(true);
-    //     setLoader(false);
-    //   });
+    axios
+      .put(`${BASE_URL}/doctor/${authContext.userData.id}`, clinicData)
+      .then((res) => {
+        console.log(res);
+        authContext.userDataHandler({ ...authContext.userData, ...res.data });
+        setLoader(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+        setLoader(false);
+      });
   };
 
   return (
@@ -114,7 +125,7 @@ export const Clinic = () => {
                 fullWidth
                 type="number"
                 name="period"
-                value={period}
+                value={period || 15}
                 onChange={(e) => setPeriod(e.target.value)}
               />
             </Grid>

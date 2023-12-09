@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../shared/API";
@@ -16,38 +16,40 @@ import {
   Alert,
 } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import CheckIcon from "@mui/icons-material/Check";
 import { Link } from "react-router-dom";
 import { LoginContainer } from "../components/LoginContainer";
 import { BackdropLoader } from "../components/BackdropLoader";
 
 export const DoctorSignup = () => {
+  const imageRef = useRef(null);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
-  const [specialization, setSpecialization] = useState({
-    id: "",
-    name: "",
-  });
+  const [imageUploaded, setImageUploaded] = useState(false);
   const navigate = useNavigate();
+
+  const handleFileChange = (event) => {
+    const imageFile = event.target.files[0];
+    if (imageFile) {
+      setImageUploaded(true);
+    } else {
+      setImageUploaded(false);
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoader(true);
     setError(false);
     const data = new FormData(event.currentTarget);
+    const imageFile = imageRef.current.files[0];
+
+    if (imageFile) {
+      data.append("image", imageFile, imageFile.name);
+    }
+
     axios
-      .post(`${BASE_URL}/doctor/register`, {
-        firstName: data.get("firstName"),
-        lastName: data.get("lastName"),
-        phoneNumber: data.get("phoneNumber"),
-        email: data.get("email"),
-        dateOfBirth: data.get("dateOfBirth"),
-        address: data.get("address"),
-        // specialization: specialization
-        // change city to workplace
-        city: data.get("workplace"),
-        fees: data.get("fees"),
-        password: data.get("password"),
-      })
+      .post(`${BASE_URL}/doctor/register`, data)
       .then((res) => {
         console.log(res);
         setLoader(false);
@@ -98,10 +100,18 @@ export const DoctorSignup = () => {
                   variant="contained"
                   component="label"
                   fullWidth
-                  startIcon={<CloudUploadIcon />}
+                  startIcon={
+                    imageUploaded ? <CheckIcon /> : <CloudUploadIcon />
+                  }
                 >
-                  Upload Photo
-                  <input type="file" hidden />
+                  {imageUploaded ? "Image Uploaded" : "Upload Photo"}
+                  <input
+                    type="file"
+                    hidden
+                    ref={imageRef}
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
                 </Button>
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -136,19 +146,13 @@ export const DoctorSignup = () => {
                 <TextField
                   fullWidth
                   label="Specialization"
-                  name="specialization"
+                  name="specializationId"
                   select
                   required
-                  value={specialization.id}
-                  onChange={(e) =>
-                    setSpecialization({
-                      id: e.target.value,
-                      name: e.target.value,
-                    })
-                  }
+                  defaultValue={""}
                 >
                   {Categories.map((category) => (
-                    <MenuItem key={category.id} value={category.name}>
+                    <MenuItem key={category.id} value={category.id}>
                       {category.name}
                     </MenuItem>
                   ))}

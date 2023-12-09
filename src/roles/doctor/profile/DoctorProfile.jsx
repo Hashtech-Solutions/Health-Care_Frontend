@@ -21,6 +21,11 @@ export const DoctorProfile = () => {
     )?.name,
   });
 
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+    return formattedDate;
+  };
+
   const handleFieldChange = (event) => {
     setUserData({
       ...userData,
@@ -43,7 +48,7 @@ export const DoctorProfile = () => {
     delete updatedData.specializationId;
 
     axios
-      .put(`${BASE_URL}/doctor/edit/${userData.id}`, updatedData)
+      .put(`${BASE_URL}/doctor/${userData.id}`, updatedData)
       .then((res) => {
         console.log(res);
         authContext.userDataHandler(userData);
@@ -126,7 +131,7 @@ export const DoctorProfile = () => {
                 label="Date of Birth"
                 name="dateOfBirth"
                 type="date"
-                value={userData.dateOfBirth || ""}
+                value={formatDate(userData.dateOfBirth) || ""}
                 onChange={handleFieldChange}
                 required
                 InputLabelProps={{
