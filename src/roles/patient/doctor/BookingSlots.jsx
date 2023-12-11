@@ -17,7 +17,7 @@ export const BookingSlots = (props) => {
         <Typography variant="body2" sx={{ color: "white", padding: "5px" }}>{props.date.date}</Typography>
       </Grid>
       {props.date.slots.map((slot, index) => (
-        <BookingSlot key={index} startTime={slot.startTime} reserved={slot.reserved} />
+        <BookingSlot key={index} doctor={props.doctor} patient={props.patient} slot={slot} date={props.date.date} />
       ))}
     </Grid>
   )

@@ -3,7 +3,7 @@ import { MainContainer } from "../../../components/MainContainer";
 import { ProfileCard } from "../../../components/ProfileCard";
 import { Grid } from "@mui/material";
 import { ProfileDetailsCard } from "../../../components/ProfileDetailsCard";
-import { Booking } from "../../../components/Booking";
+import { Booking } from "./Booking";
 import { Box } from "@mui/system";
 
 const doctor = {
@@ -16,19 +16,18 @@ const doctor = {
   description: "Specialized in Cardiology, Dr. Steven has been working in the field for 10 years."
 
 };
+const patient = {
+  id: 1,
+  name: "John",
+  email: "john.doe@example.com"
+};
 export const DoctorView = (props) => {
   return <MainContainer title={`Book now with Doctor ${doctor.name}`}>
 
     <Grid container spacing={2}>
       <Grid item direction={"column"} spacing={2}>
         <ProfileCard
-          name={doctor.name}
-          specialization={doctor.specialization}
-          fees={doctor.fees}
-          address={doctor.address}
-          phone={doctor.phone}
-          key={doctor.name}
-          id={doctor.id}
+          doctor={doctor}
           isClickable={false}
         />
         <Box mt={2} />
@@ -36,7 +35,7 @@ export const DoctorView = (props) => {
           description={doctor.description}
         />
       </Grid>
-      <Booking />
+      <Booking doctor={doctor} patient={patient} />
     </Grid>
   </MainContainer >;
 };

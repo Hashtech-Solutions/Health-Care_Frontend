@@ -7,7 +7,7 @@ export const ProfileCard = (props) => {
     <Grid item xs={12} sm={12} md={6} lg={6}>
       <CardActionArea
         disabled={!props.isClickable}
-        onClick={() => navigate(`/patient/doctors/${props.id}`)}
+        onClick={() => navigate(`/patient/doctors/${props.doctor.id}`)}
         sx={{
           borderRadius: "20px",
           boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
@@ -47,19 +47,19 @@ export const ProfileCard = (props) => {
             {/* Column: Text Widgets */}
             <Grid container direction="column" spacing={2}>
               <Grid item>
-                <Typography variant="h4">Doctor {props.name}</Typography>
+                <Typography variant="h4">Doctor {props.doctor.name}</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="h6">{props.specialization}</Typography>
+                <Typography variant="h6">{props.doctor.specialization}</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2">{props.address}</Typography>
+                <Typography variant="body2">{props.doctor.address}</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2">+2{props.phone}</Typography>
+                <Typography variant="body2">+2{props.doctor.phone}</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2">Fees: {props.fees} EGP</Typography>
+                <Typography variant="body2">Fees: {props.doctor.fees} EGP</Typography>
               </Grid>
             </Grid>
           </Grid>

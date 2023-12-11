@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import * as React from "react";
-import { ProfileCard } from "./ProfileCard";
+import { ProfileCard } from "../../../components/ProfileCard";
 
 const doctors = [
   {
@@ -34,13 +34,7 @@ export const DoctorsGrid = () => {
     <Grid container spacing={2} sx={{ paddingTop: "50px" }}>
       {doctors.map((doctor) => (
         <ProfileCard
-          name={doctor.name}
-          specialization={doctor.specialization}
-          fees={doctor.fees}
-          address={doctor.address}
-          phone={doctor.phone}
-          key={doctor.name}
-          id={doctor.id}
+          doctor={doctor}
           isClickable={true}
         />
       ))}
