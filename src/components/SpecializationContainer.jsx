@@ -25,7 +25,7 @@ export const SpecializationContainer = ({ children, item }) => {
         </Typography>
         <Divider />
         <Typography variant="h5" gutterBottom>
-          Description:
+          Specialization Description:
         </Typography>
         <Typography variant="h6" gutterBottom>
           {item.description}
