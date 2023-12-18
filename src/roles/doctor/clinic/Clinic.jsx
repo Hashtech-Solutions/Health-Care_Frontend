@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../shared/API";
-import { Days } from "../../../shared/data/Days";
 import { useAuth } from "../../../hooks/useAuth";
 
 // Components
@@ -10,8 +9,6 @@ import {
   Button,
   Box,
   Alert,
-  ToggleButtonGroup,
-  ToggleButton,
   Typography,
   TextField,
 } from "@mui/material";
@@ -20,7 +17,6 @@ import { BackdropLoader } from "../../../components/BackdropLoader";
 import { TimeSlotPicker } from "../../../pages/TimeSlotPicker";
 
 export const Clinic = () => {
-  const [availableDays, setAvailableDays] = useState([]);
   const [openingTime, setOpeningTime] = useState(new Date());
   const [closingTime, setClosingTime] = useState(new Date());
   const [period, setPeriod] = useState(0);
@@ -44,7 +40,6 @@ export const Clinic = () => {
     setLoader(true);
     setError(false);
     const clinicData = {
-      // availableDays,
       workingHoursStart: timeFormatter(openingTime),
       workingHoursEnd: timeFormatter(closingTime),
       bookingDuration: (period === 0 ? 15 : period) / 60,
@@ -69,32 +64,6 @@ export const Clinic = () => {
       <MainContainer title="Clinic Settings">
         <Box component="form">
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Typography sx={{ mt: 1, mb: 2 }} variant="h6" component="div">
-                Open Days
-              </Typography>
-              <ToggleButtonGroup
-                value={availableDays}
-                onChange={(event, newDays) => {
-                  setAvailableDays(newDays);
-                }}
-                aria-label="available days"
-                color="primary"
-                fullWidth
-                sx={{
-                  "@media (max-width:900px)": {
-                    display: "flex",
-                    flexWrap: "wrap",
-                  },
-                }}
-              >
-                {Days.map((day) => (
-                  <ToggleButton value={day.value} key={day.id}>
-                    {day.name}
-                  </ToggleButton>
-                ))}
-              </ToggleButtonGroup>
-            </Grid>
             <Grid item xs={12}>
               <Typography sx={{ mt: 2, mb: 2 }} variant="h6" component="div">
                 Open Hours

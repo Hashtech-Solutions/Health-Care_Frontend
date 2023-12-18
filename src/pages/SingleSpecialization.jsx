@@ -7,17 +7,29 @@ import { BASE_URL } from "../shared/API";
 // Components
 import { SpecializationContainer } from "../components/SpecializationContainer";
 import { SpecializationGrid } from "../components/SpecializationGrid";
-import { Typography } from "@mui/material";
+import { Alert, Typography } from "@mui/material";
+import { BackdropLoader } from "../components/BackdropLoader";
 
 export const SingleSpecialization = () => {
   const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const { id } = useParams();
   const item = Categories.find((item) => item.value === id);
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/doctors?specialization=${id}`).then((response) => {
-      setDoctors(response.data);
-    });
+    axios
+      .get(`${BASE_URL}/doctor/all`)
+      .then((response) => {
+        console.log(response);
+        setDoctors(response.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+        setLoading(false);
+      });
   }, [id]);
 
   return (
@@ -25,7 +37,13 @@ export const SingleSpecialization = () => {
       <Typography variant="h5" gutterBottom sx={{ mt: "40px" }}>
         Specialization Doctors:
       </Typography>
-      <SpecializationGrid specializationDoctors={doctors} />
+      {loading ? (
+        <BackdropLoader open={loading} />
+      ) : error ? (
+        <Alert severity="danger">Something went wrong</Alert>
+      ) : (
+        <SpecializationGrid specializationDoctors={doctors} />
+      )}
     </SpecializationContainer>
   );
 };

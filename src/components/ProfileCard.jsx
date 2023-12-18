@@ -1,13 +1,27 @@
-import { Grid, Typography, CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+
+import { Grid, Typography, CardActionArea } from "@mui/material";
 
 export const ProfileCard = (props) => {
   const navigate = useNavigate();
+  const authContext = useAuth();
+  const currLocation =
+    authContext.role === "PATIENT"
+      ? "patient"
+      : authContext.role === "DOCTOR"
+      ? "doctor"
+      : "portal";
+
   return (
     <Grid item xs={12} sm={12} md={6} lg={6}>
       <CardActionArea
         disabled={!props.isClickable}
-        onClick={() => navigate(`/patient/doctors/${props.doctor.id}`)}
+        onClick={() =>
+          currLocation === "portal"
+            ? navigate("/login")
+            : navigate(`/${currLocation}/doctors/${props.doctor.id}`)
+        }
         sx={{
           borderRadius: "20px",
           boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
@@ -50,7 +64,9 @@ export const ProfileCard = (props) => {
                 <Typography variant="h4">Doctor {props.doctor.name}</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="h6">{props.doctor.specialization}</Typography>
+                <Typography variant="h6">
+                  {props.doctor.specialization}
+                </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="body2">{props.doctor.address}</Typography>
@@ -59,7 +75,9 @@ export const ProfileCard = (props) => {
                 <Typography variant="body2">+2{props.doctor.phone}</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2">Fees: {props.doctor.fees} EGP</Typography>
+                <Typography variant="body2">
+                  Fees: {props.doctor.fees} EGP
+                </Typography>
               </Grid>
             </Grid>
           </Grid>
@@ -67,6 +85,6 @@ export const ProfileCard = (props) => {
           {/* Add more Grid items for other columns if needed */}
         </Grid>
       </CardActionArea>
-    </Grid >
+    </Grid>
   );
 };
