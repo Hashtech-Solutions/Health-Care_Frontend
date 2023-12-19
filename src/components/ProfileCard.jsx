@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 import { Grid, Typography, CardActionArea } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../shared/API";
 
 export const ProfileCard = (props) => {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ export const ProfileCard = (props) => {
           >
             <img
               alt="Profile"
-              src="https://picsum.photos/200/300"
+              src={`${BASE_URL}/uploads/${props.doctor.user.image}`}
               style={{ width: "120px", borderRadius: "50%", height: "120px" }}
             />
           </Grid>
@@ -61,7 +63,8 @@ export const ProfileCard = (props) => {
             {/* Column: Text Widgets */}
             <Grid container direction="column" spacing={2}>
               <Grid item>
-                <Typography variant="h4">Doctor {props.doctor.name}</Typography>
+                <Typography variant="h4">Doctor {props.doctor.user.firstName}{" "}
+                                    {props.doctor.user.lastName}</Typography>
               </Grid>
               <Grid item>
                 <Typography variant="h6">
@@ -72,7 +75,7 @@ export const ProfileCard = (props) => {
                 <Typography variant="body2">{props.doctor.address}</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body2">+2{props.doctor.phone}</Typography>
+                <Typography variant="body2">+2{props.doctor.user.phoneNumber}</Typography>
               </Grid>
               <Grid item>
                 <Typography variant="body2">

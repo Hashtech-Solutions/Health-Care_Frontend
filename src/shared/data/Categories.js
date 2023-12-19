@@ -17,7 +17,7 @@ export const Categories = [
   {
     id: 1,
     name: "Cardiology",
-    value: "cardiology",
+    value: "1",
     image: cardiologyImage,
     backgroundImage: cairdologyBgImage,
     description:
@@ -27,7 +27,7 @@ export const Categories = [
   {
     id: 2,
     name: "Dermatology",
-    value: "dermatology",
+    value: "2",
     image: dermatologyImage,
     backgroundImage: dermatologyImage,
     description:
@@ -37,7 +37,7 @@ export const Categories = [
   {
     id: 3,
     name: "Orthopedics",
-    value: "orthopedics",
+    value: "3",
     image: orthopedicsImage,
     backgroundImage: orthopedicsBgImage,
     description:
@@ -47,7 +47,7 @@ export const Categories = [
   {
     id: 4,
     name: "Neurology",
-    value: "neurology",
+    value: "4",
     image: neurologyImage,
     backgroundImage: neurologyBgImage,
     description:
@@ -57,7 +57,7 @@ export const Categories = [
   {
     id: 5,
     name: "Pediatrics",
-    value: "pediatrics",
+    value: "5",
     image: pediatricsImage,
     backgroundImage: pediatricsBgImage,
     description:
@@ -67,7 +67,7 @@ export const Categories = [
   {
     id: 6,
     name: "Psychiatry",
-    value: "psychiatry",
+    value: "6",
     image: psychiatryImage,
     backgroundImage: psychiatryBgImage,
     description:
@@ -78,7 +78,7 @@ export const Categories = [
   {
     id: 7,
     name: "Ophthalmology",
-    value: "ophthalmology",
+    value: "7",
     image: ophthalmologyImage,
     backgroundImage: ophthalmologyImage,
     description:
@@ -88,7 +88,7 @@ export const Categories = [
   {
     id: 8,
     name: "Gastroenterology",
-    value: "gastroenterology",
+    value: "8",
     image: gastroenterologyImage,
     backgroundImage: gastroenterologyImage,
     description:
@@ -98,7 +98,7 @@ export const Categories = [
   {
     id: 9,
     name: "Obstetrics and Gynecology",
-    value: "obstetrics",
+    value: "9",
     image: obstetricsImage,
     backgroundImage: obstetricsImage,
     description:

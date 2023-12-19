@@ -19,7 +19,7 @@ export function PatientRoutes() {
         <Route path="profile" element={<PatientProfile />} />
         <Route path="appointments" element={<PatientReservations />} />
         <Route path="doctors" element={<DoctorsView />} />
-        <Route path="doctors/:doctorId" element={<DoctorView />} />
+        <Route path="doctors/:id" element={<DoctorView />} />
         <Route path="specializations" element={<AllSpecializations />} />
         <Route path="specializations/:id" element={<SingleSpecialization />} />
 

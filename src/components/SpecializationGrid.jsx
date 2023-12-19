@@ -4,22 +4,22 @@ import { BASE_URL } from "../shared/API";
 
 // Components
 import {
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-  IconButton,
+    ImageList,
+    ImageListItem,
+    ImageListItemBar,
+    IconButton,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 
 export const SpecializationGrid = ({ specializationDoctors }) => {
-  const authContext = useAuth();
-  const navigate = useNavigate();
-  const currLocation =
-    authContext.role === "PATIENT"
-      ? "patient"
-      : authContext.role === "DOCTOR"
-      ? "doctor"
-      : "portal";
+    const authContext = useAuth();
+    const navigate = useNavigate();
+    const currLocation =
+        authContext.role === "PATIENT"
+            ? "patient"
+            : authContext.role === "DOCTOR"
+            ? "doctor"
+            : "portal";
 
   return (
     <ImageList
