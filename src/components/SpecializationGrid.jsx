@@ -4,22 +4,23 @@ import { BASE_URL } from "../shared/API";
 
 // Components
 import {
-    ImageList,
-    ImageListItem,
-    ImageListItemBar,
-    IconButton,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  IconButton,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import { TestingDoctors } from "../shared/data/Testing";
 
 export const SpecializationGrid = ({ specializationDoctors }) => {
-    const authContext = useAuth();
-    const navigate = useNavigate();
-    const currLocation =
-        authContext.role === "PATIENT"
-            ? "patient"
-            : authContext.role === "DOCTOR"
-            ? "doctor"
-            : "portal";
+  const authContext = useAuth();
+  const navigate = useNavigate();
+  const currLocation =
+    authContext.role === "PATIENT"
+      ? "patient"
+      : authContext.role === "DOCTOR"
+      ? "doctor"
+      : "portal";
 
   return (
     <ImageList
@@ -32,34 +33,34 @@ export const SpecializationGrid = ({ specializationDoctors }) => {
         paddingBottom: "20px",
       }}
     >
-      {specializationDoctors.map((item) => (
+      {TestingDoctors.map((doctor) => (
         <ImageListItem
-          key={item.id}
+          key={doctor.id}
           sx={{
             width: "200px",
           }}
         >
           <img
-            src={`${BASE_URL}/uploads/${item.user.image}`}
-            alt={item.user.firstName + " " + item.user.lastName}
+            src={doctor.image || `${BASE_URL}/uploads/${doctor.image}`}
+            alt={doctor.firstName + " " + doctor.lastName}
             loading="lazy"
             style={{
               height: "300px",
             }}
           />
           <ImageListItemBar
-            title={item.user.firstName + " " + item.user.lastName}
-            subtitle={`Starts from ${item.fees}LE`}
+            title={doctor.firstName + " " + doctor.lastName}
+            subtitle={`Starts from ${doctor.fees}LE`}
             actionIcon={
               <IconButton
                 sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                 aria-label={`info about ${
-                  item.user.firstName + " " + item.user.lastName
+                  doctor.firstName + " " + doctor.lastName
                 }`}
                 onClick={() => {
                   currLocation === "portal"
                     ? navigate(`/login`)
-                    : navigate(`/${currLocation}/doctors/${item.id}`);
+                    : navigate(`/${currLocation}/doctors/${doctor.id}`);
                 }}
               >
                 <InfoIcon />

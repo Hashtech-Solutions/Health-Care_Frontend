@@ -1,28 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { MainContainer } from "../../../components/MainContainer";
-import { CardGrid } from "../../../components/CardGrid";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../shared/API";
 
+// Components
+import { MainContainer } from "../../../components/MainContainer";
+import { CardGrid } from "../../../components/CardGrid";
+import { Alert } from "@mui/material";
+import { BackdropLoader } from "../../../components/BackdropLoader";
+
 export const DoctorsView = () => {
-    const [doctors, setDoctors] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-    useEffect(() => {
-        // Fetch doctors from the server
-        axios
-            .get(`${BASE_URL}/doctor/all`)
-            .then((response) => {
-                console.log(response.data);
-                setDoctors(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching doctors:", error);
-            });
-    }, []); // The empty dependency array ensures the effect runs once when the component mounts
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/doctor/all`)
+      .then((response) => {
+        console.log(response.data);
+        setDoctors(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching doctors:", error);
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
 
-    return (
-        <MainContainer title="Doctors">
-            <CardGrid doctors={doctors} />
-        </MainContainer>
-    );
+  return (
+    <MainContainer title="Doctors">
+      {loading ? (
+        <BackdropLoader />
+      ) : error ? (
+        <Alert severity="error">
+          Something went wrong, please try again later!
+        </Alert>
+      ) : doctors.length === 0 ? (
+        <Alert severity="info">No doctors found!</Alert>
+      ) : (
+        <CardGrid doctors={doctors} />
+      )}
+    </MainContainer>
+  );
 };

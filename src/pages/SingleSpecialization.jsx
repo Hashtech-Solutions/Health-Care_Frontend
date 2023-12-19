@@ -40,7 +40,9 @@ export const SingleSpecialization = () => {
       {loading ? (
         <BackdropLoader open={loading} />
       ) : error ? (
-        <Alert severity="danger">Something went wrong</Alert>
+        <Alert variant="filled" severity="error">
+          Something went wrong
+        </Alert>
       ) : (
         <SpecializationGrid specializationDoctors={doctors} />
       )}

@@ -6,6 +6,7 @@ import { BASE_URL } from "../shared/API";
 import { Alert, Grid } from "@mui/material";
 import { ProfileCard } from "./ProfileCard";
 import { BackdropLoader } from "./BackdropLoader";
+import { TestingDoctors } from "../shared/data/Testing";
 
 export const CardGrid = () => {
   const [doctors, setDoctors] = useState([]);
@@ -20,7 +21,7 @@ export const CardGrid = () => {
         setLoading(false);
       })
       .catch((err) => {
-        setError(true);
+        // setError(true);
         setLoading(false);
       });
   }, []);
@@ -30,23 +31,12 @@ export const CardGrid = () => {
       {loading ? (
         <BackdropLoader />
       ) : error ? (
-        <Alert severity="danger">
+        <Alert severity="error" variant="filled">
           Something went wrong, please try again later!
         </Alert>
       ) : (
-        doctors.map((doctor) => (
-          <ProfileCard
-            isClickable={true}
-            doctor={{
-              id: doctor.id,
-              name: doctor.user.firstName + " " + doctor.user.lastName,
-              phoneNumber: doctor.user.phoneNumber,
-              specialization: doctor.specialization,
-              fees: doctor.fees,
-              address: doctor.address,
-            }}
-            key={doctor.id}
-          />
+        TestingDoctors.map((doctor) => (
+          <ProfileCard isClickable={true} doctor={doctor} key={doctor.id} />
         ))
       )}
     </Grid>
