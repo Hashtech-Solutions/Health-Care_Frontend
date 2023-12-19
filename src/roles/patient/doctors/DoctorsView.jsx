@@ -4,43 +4,35 @@ import { BASE_URL } from "../../../shared/API";
 
 // Components
 import { MainContainer } from "../../../components/MainContainer";
+import { StatusContainer } from "../../../components/StatusContainer";
 import { CardGrid } from "../../../components/CardGrid";
-import { Alert } from "@mui/material";
-import { BackdropLoader } from "../../../components/BackdropLoader";
 
 export const DoctorsView = () => {
   const [doctors, setDoctors] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [status, setStatus] = useState("loading");
 
   useEffect(() => {
     axios
       .get(`${BASE_URL}/doctor/all`)
-      .then((response) => {
-        console.log(response.data);
-        setDoctors(response.data);
-        setLoading(false);
+      .then((res) => {
+        console.log(res);
+        setDoctors(res.data);
+        setStatus(res.data.length > 0 ? "success" : "empty");
       })
       .catch((error) => {
-        console.error("Error fetching doctors:", error);
-        setError(true);
-        setLoading(false);
+        console.error(error);
+        setStatus("error");
       });
   }, []);
 
   return (
     <MainContainer title="Doctors">
-      {loading ? (
-        <BackdropLoader />
-      ) : error ? (
-        <Alert severity="error">
-          Something went wrong, please try again later!
-        </Alert>
-      ) : doctors.length === 0 ? (
-        <Alert severity="info">No doctors found!</Alert>
-      ) : (
+      <StatusContainer
+        status={status}
+        emptyMessage="There are no doctors found..."
+      >
         <CardGrid doctors={doctors} />
-      )}
+      </StatusContainer>
     </MainContainer>
   );
 };

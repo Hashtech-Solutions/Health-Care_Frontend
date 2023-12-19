@@ -12,48 +12,35 @@ import {
   ListItem,
   ListItemText,
   Button,
-  Alert,
 } from "@mui/material";
 import { MainContainer } from "../../../components/MainContainer";
+import { StatusContainer } from "../../../components/StatusContainer";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // Testing
 import { TestingData } from "./Data";
-import { BackdropLoader } from "../../../components/BackdropLoader";
 
 export const DoctorReservations = () => {
   const [appointments, setAppointments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [status, setStatus] = useState("loading");
 
   useEffect(() => {
     axios
       .get(`${BASE_URL}/appointment/all`)
       .then((res) => {
         setAppointments(res.data);
-        setLoading(false);
+        setStatus(res.data.length > 0 ? "success" : "empty");
       })
       .catch((err) => {
         console.log(err);
-        setError(true);
-        setLoading(false);
+        setStatus("error");
       });
   }, []);
 
   return (
     <MainContainer title="Appointments">
-      {loading ? (
-        <BackdropLoader />
-      ) : error ? (
-        <Alert severity="error" variant="filled">
-          Something went wrong, please try again later!
-        </Alert>
-      ) : TestingData.length === 0 ? (
-        <Alert severity="info" variant="filled">
-          No appointments yet!
-        </Alert>
-      ) : (
-        TestingData.map((data) => {
+      <StatusContainer status={status} emptyMessage="No appointments yet!">
+        {TestingData.map((data) => {
           return (
             <Accordion key={data.id}>
               <AccordionSummary
@@ -134,8 +121,8 @@ export const DoctorReservations = () => {
               </AccordionDetails>
             </Accordion>
           );
-        })
-      )}
+        })}
+      </StatusContainer>
     </MainContainer>
   );
 };

@@ -15,7 +15,6 @@ export function PublicRoutes() {
         <Route path="" element={<LandingPage />} />
         <Route path="specializations" element={<AllSpecializations />} />
         <Route path="specializations/:id" element={<SingleSpecialization />} />
-
         <Route path="doctors" element={<PublicDoctors />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

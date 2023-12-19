@@ -1,34 +1,32 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { Categories } from "../shared/data/Categories";
 import axios from "axios";
 import { BASE_URL } from "../shared/API";
+import { Categories } from "../shared/data/Categories";
 
 // Components
 import { SpecializationContainer } from "../components/SpecializationContainer";
+import { StatusContainer } from "../components/StatusContainer";
 import { SpecializationGrid } from "../components/SpecializationGrid";
-import { Alert, Typography } from "@mui/material";
-import { BackdropLoader } from "../components/BackdropLoader";
+import { Typography } from "@mui/material";
 
 export const SingleSpecialization = () => {
   const [doctors, setDoctors] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [status, setStatus] = useState("loading");
   const { id } = useParams();
   const item = Categories.find((item) => item.value === id);
 
   useEffect(() => {
     axios
       .get(`${BASE_URL}/doctor/all`)
-      .then((response) => {
-        console.log(response);
-        setDoctors(response.data);
-        setLoading(false);
+      .then((res) => {
+        console.log(res);
+        setDoctors(res.data);
+        setStatus(res.data.length > 0 ? "success" : "empty");
       })
       .catch((err) => {
         console.log(err);
-        setError(true);
-        setLoading(false);
+        setStatus("error");
       });
   }, [id]);
 
@@ -37,15 +35,12 @@ export const SingleSpecialization = () => {
       <Typography variant="h5" gutterBottom sx={{ mt: "40px" }}>
         Specialization Doctors:
       </Typography>
-      {loading ? (
-        <BackdropLoader open={loading} />
-      ) : error ? (
-        <Alert variant="filled" severity="error">
-          Something went wrong
-        </Alert>
-      ) : (
+      <StatusContainer
+        status={status}
+        emptyMessage="No doctors were found in this specialization..."
+      >
         <SpecializationGrid specializationDoctors={doctors} />
-      )}
+      </StatusContainer>
     </SpecializationContainer>
   );
 };
