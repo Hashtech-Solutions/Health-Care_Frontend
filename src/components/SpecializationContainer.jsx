@@ -27,7 +27,13 @@ export const SpecializationContainer = ({ children, item }) => {
         <Typography variant="h5" gutterBottom>
           Specialization Description:
         </Typography>
-        <Typography variant="h6" gutterBottom>
+        <Typography
+          variant="h6"
+          gutterBottom
+          sx={{
+            textAlign: "justify",
+          }}
+        >
           {item.description}
         </Typography>
         {children}

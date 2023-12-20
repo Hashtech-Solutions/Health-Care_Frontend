@@ -51,8 +51,11 @@ export const DoctorReservations = () => {
                   backgroundColor: "#F3F3F3",
                 }}
               >
-                <Typography>
-                  Appointment #{data.id} {data.startTime} - {data.endTime}
+                <Typography sx={{ width: "20%", flexShrink: 0 }}>
+                  {data.startTime} - {data.endTime}
+                </Typography>
+                <Typography sx={{ color: "text.secondary" }}>
+                  Appointment #{data.id}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
