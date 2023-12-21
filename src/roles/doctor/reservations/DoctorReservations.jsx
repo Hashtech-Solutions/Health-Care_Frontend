@@ -46,15 +46,6 @@ export const DoctorReservations = () => {
     return formattedDate;
   }
 
-  function formatTime(inputTimeString) {
-    const options = { hour: "numeric", minute: "numeric", hour12: true };
-    const formattedTime = new Date(inputTimeString).toLocaleTimeString(
-      "en-US",
-      options
-    );
-    return formattedTime;
-  }
-
   const handleDelete = (id) => {
     setStatus("loading");
     axios
@@ -104,9 +95,11 @@ export const DoctorReservations = () => {
                   >
                     <ListItemText
                       primary="Time"
-                      secondary={`${formatTime(data.startTime)} - ${formatTime(
-                        data.endTime
-                      )}`}
+                      secondary={`${data.startTime
+                        .split("T")[1]
+                        .substring(0, 5)} - ${data.endTime
+                        .split("T")[1]
+                        .substring(0, 5)}`}
                       sx={{
                         width: "50%",
                       }}
