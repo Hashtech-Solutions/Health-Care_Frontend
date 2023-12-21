@@ -19,6 +19,7 @@ export const Booking = (props) => {
         setStatus("success");
       })
       .catch((error) => {
+        console.log(error);
         setStatus("error");
       });
   }, [props.doctor.id]);

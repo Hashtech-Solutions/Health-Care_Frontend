@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../shared/API";
+import { useAuth } from "../../../hooks/useAuth";
 
 // Components
 import {
@@ -17,17 +18,16 @@ import { MainContainer } from "../../../components/MainContainer";
 import { StatusContainer } from "../../../components/StatusContainer";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-// Testing
-import { TestingData } from "./Data";
-
 export const DoctorReservations = () => {
   const [appointments, setAppointments] = useState([]);
   const [status, setStatus] = useState("loading");
+  const authContext = useAuth();
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/appointment/all`)
+      .get(`${BASE_URL}/book/doctor/${authContext.id}`)
       .then((res) => {
+        console.log(res);
         setAppointments(res.data);
         setStatus(res.data.length > 0 ? "success" : "empty");
       })
@@ -35,12 +35,45 @@ export const DoctorReservations = () => {
         console.log(err);
         setStatus("error");
       });
-  }, []);
+  }, [authContext.id]);
+
+  function formatDate(inputDateString) {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    const formattedDate = new Date(inputDateString).toLocaleDateString(
+      "en-GB",
+      options
+    );
+    return formattedDate;
+  }
+
+  function formatTime(inputTimeString) {
+    const options = { hour: "numeric", minute: "numeric", hour12: true };
+    const formattedTime = new Date(inputTimeString).toLocaleTimeString(
+      "en-US",
+      options
+    );
+    return formattedTime;
+  }
+
+  const handleDelete = (id) => {
+    setStatus("loading");
+    axios
+      .delete(`${BASE_URL}/book/${id}`)
+      .then((res) => {
+        console.log(res);
+        setAppointments(appointments.filter((data) => data.id !== id));
+        setStatus("success");
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatus("error");
+      });
+  };
 
   return (
     <MainContainer title="Appointments">
       <StatusContainer status={status} emptyMessage="No appointments yet!">
-        {TestingData.map((data) => {
+        {appointments.map((data) => {
           return (
             <Accordion key={data.id}>
               <AccordionSummary
@@ -51,8 +84,8 @@ export const DoctorReservations = () => {
                   backgroundColor: "#F3F3F3",
                 }}
               >
-                <Typography sx={{ width: "20%", flexShrink: 0 }}>
-                  {data.startTime} - {data.endTime}
+                <Typography sx={{ width: "15%", flexShrink: 0 }}>
+                  {formatDate(data.day)}
                 </Typography>
                 <Typography sx={{ color: "text.secondary" }}>
                   Appointment #{data.id}
@@ -70,19 +103,19 @@ export const DoctorReservations = () => {
                     }}
                   >
                     <ListItemText
-                      primary="Name"
-                      secondary={
-                        data.patientData.firstName +
-                        " " +
-                        data.patientData.lastName
-                      }
+                      primary="Time"
+                      secondary={`${formatTime(data.startTime)} - ${formatTime(
+                        data.endTime
+                      )}`}
                       sx={{
                         width: "50%",
                       }}
                     />
                     <ListItemText
-                      primary="Email"
-                      secondary={data.patientData.email}
+                      primary="Name"
+                      secondary={
+                        data.patient.firstName + " " + data.patient.lastName
+                      }
                       sx={{
                         width: "50%",
                       }}
@@ -95,14 +128,14 @@ export const DoctorReservations = () => {
                   >
                     <ListItemText
                       primary="Phone Number"
-                      secondary={data.patientData.phoneNumber}
+                      secondary={data.patient.phoneNumber}
                       sx={{
                         width: "50%",
                       }}
                     />
                     <ListItemText
-                      primary="Age"
-                      secondary={data.patientData.age}
+                      primary="Email"
+                      secondary={data.patient.email}
                       sx={{
                         width: "50%",
                       }}
@@ -113,11 +146,13 @@ export const DoctorReservations = () => {
                       gap: "1rem",
                     }}
                   >
-                    <Button variant="contained" color="primary" fullWidth>
-                      CONFIRM
-                    </Button>
-                    <Button variant="contained" color="error" fullWidth>
-                      CANCEL
+                    <Button
+                      variant="contained"
+                      color="error"
+                      fullWidth
+                      onClick={() => handleDelete(data.id)}
+                    >
+                      CANCEL APPOINTMENT
                     </Button>
                   </ListItem>
                 </List>
