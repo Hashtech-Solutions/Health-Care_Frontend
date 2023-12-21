@@ -45,14 +45,12 @@ export const Clinic = () => {
       bookingDuration: (period === 0 ? 15 : period) / 60,
     };
     axios
-      .put(`${BASE_URL}/doctor/${authContext.userData.id}`, clinicData)
+      .put(`${BASE_URL}/doctor/${authContext.id}`, clinicData)
       .then((res) => {
-        console.log(res);
-        authContext.userDataHandler({ ...authContext.userData, ...res.data });
+        authContext.userDataHandler(res.data);
         setLoader(false);
       })
       .catch((err) => {
-        console.log(err);
         setError(true);
         setLoader(false);
       });

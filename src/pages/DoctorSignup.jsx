@@ -111,6 +111,7 @@ export const DoctorSignup = () => {
                     ref={imageRef}
                     accept="image/*"
                     onChange={handleFileChange}
+                    required
                   />
                 </Button>
               </Grid>
@@ -146,13 +147,16 @@ export const DoctorSignup = () => {
                 <TextField
                   fullWidth
                   label="Specialization"
-                  name="specializationId"
+                  name="spec"
                   select
                   required
                   defaultValue={""}
                 >
                   {Categories.map((category) => (
-                    <MenuItem key={category.id} value={category.id}>
+                    <MenuItem
+                      key={category.id}
+                      value={category.name.toLowerCase()}
+                    >
                       {category.name}
                     </MenuItem>
                   ))}

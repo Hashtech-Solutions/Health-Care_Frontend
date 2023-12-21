@@ -34,14 +34,12 @@ export const PatientProfile = () => {
     setLoader(true);
     setError(false);
     axios
-      .put(`${BASE_URL}/user/${userData.id}`, updatedData)
+      .put(`${BASE_URL}/user/${authContext.id}`, updatedData)
       .then((res) => {
-        console.log(res);
-        authContext.userDataHandler({ ...userData, ...updatedData });
+        authContext.userDataHandler(res.data);
         setLoader(false);
       })
       .catch((err) => {
-        console.log(err);
         setError(true);
         setLoader(false);
       });
@@ -52,14 +50,12 @@ export const PatientProfile = () => {
     setLoader(true);
     setError(false);
     axios
-      .delete(`${BASE_URL}/user/${userData.id}`)
+      .delete(`${BASE_URL}/user/${authContext.id}`)
       .then((res) => {
-        console.log(res);
         authContext.logout();
         setLoader(false);
       })
       .catch((err) => {
-        console.log(err);
         setError(true);
         setLoader(false);
       });

@@ -12,14 +12,9 @@ import { BackdropLoader } from "../../../components/BackdropLoader";
 export const DoctorProfile = () => {
   const authContext = useAuth();
   const [userData, setUserData] = useState(authContext.userData);
+  const [updatedData, setUpdatedData] = useState({});
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
-  const [specialization, setSpecialization] = useState({
-    id: authContext.userData.specializationId,
-    name: Categories.find(
-      (category) => category.id === authContext.userData.specializationId
-    )?.name,
-  });
 
   const formatDate = (date) => {
     const formattedDate = new Date(date).toISOString().split("T")[0];
@@ -31,27 +26,24 @@ export const DoctorProfile = () => {
       ...userData,
       [event.target.name]: event.target.value,
     });
+    setUpdatedData({
+      ...updatedData,
+      [event.target.name]:
+        event.target.name === "dateOfBirth"
+          ? new Date(event.target.value).toISOString()
+          : event.target.value,
+    });
   };
 
   const handleSave = (event) => {
     event.preventDefault();
     setLoader(true);
     setError(false);
-    const updatedData = {
-      ...userData,
-      dateOfBirth: new Date(userData.dateOfBirth).toISOString(),
-      specialization: specialization,
-    };
-    delete updatedData.role;
-    delete updatedData.id;
-    delete updatedData.userId;
-    delete updatedData.specializationId;
-
     axios
-      .put(`${BASE_URL}/doctor/${userData.id}`, updatedData)
+      .put(`${BASE_URL}/doctor/${authContext.id}`, updatedData)
       .then((res) => {
         console.log(res);
-        authContext.userDataHandler(userData);
+        authContext.userDataHandler(res.data);
         setLoader(false);
       })
       .catch((err) => {
@@ -66,7 +58,7 @@ export const DoctorProfile = () => {
     setLoader(true);
     setError(false);
     axios
-      .delete(`${BASE_URL}/user/delete/${userData.id}`)
+      .delete(`${BASE_URL}/doctor/${authContext.id}`)
       .then((res) => {
         console.log(res);
         authContext.logout();
@@ -143,19 +135,17 @@ export const DoctorProfile = () => {
               <TextField
                 fullWidth
                 label="Specialization"
-                name="specialization"
+                name="spec"
                 select
                 required
-                value={specialization.id || ""}
-                onChange={(e) =>
-                  setSpecialization({
-                    id: e.target.value,
-                    name: e.target.value,
-                  })
-                }
+                value={userData.spec || ""}
+                onChange={handleFieldChange}
               >
                 {Categories.map((category) => (
-                  <MenuItem key={category.id} value={category.name}>
+                  <MenuItem
+                    key={category.id}
+                    value={category.name.toLowerCase()}
+                  >
                     {category.name}
                   </MenuItem>
                 ))}
