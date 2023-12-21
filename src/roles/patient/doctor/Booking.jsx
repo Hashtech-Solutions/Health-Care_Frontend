@@ -30,7 +30,6 @@ export const Booking = (props) => {
         maxWidth: "620px",
         "@media (max-width: 1200px)": {
           width: "100%",
-          // reset maxWidth
           maxWidth: "unset",
         },
       }}

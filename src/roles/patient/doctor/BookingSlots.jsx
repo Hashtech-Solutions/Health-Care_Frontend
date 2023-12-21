@@ -21,6 +21,7 @@ export const BookingSlots = (props) => {
         backgroundColor: "white",
         borderRadius: "5px",
         width: "100px",
+        minWidth: "100px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",

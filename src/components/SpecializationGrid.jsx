@@ -37,6 +37,7 @@ export const SpecializationGrid = ({ specializationDoctors }) => {
           key={doctor.id}
           sx={{
             width: "200px",
+            margin: "10px",
           }}
         >
           <img

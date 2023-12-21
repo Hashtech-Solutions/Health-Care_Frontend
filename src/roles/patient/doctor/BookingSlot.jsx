@@ -72,7 +72,7 @@ export const BookingSlot = (props) => {
         alignItems: "center",
       }}
     >
-      {props.slot.reserved ? (
+      {props.slot.isReserved ? (
         <Typography
           variant="h6"
           sx={{
