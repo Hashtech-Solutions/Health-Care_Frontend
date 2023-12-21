@@ -11,6 +11,7 @@ import { BackdropLoader } from "../../../components/BackdropLoader";
 export const PatientProfile = () => {
   const authContext = useAuth();
   const [userData, setUserData] = useState(authContext.userData);
+  const [updatedData, setUpdatedData] = useState({});
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
 
@@ -19,23 +20,24 @@ export const PatientProfile = () => {
       ...userData,
       [event.target.name]: event.target.value,
     });
+    setUpdatedData({
+      ...updatedData,
+      [event.target.name]:
+        event.target.name === "dateOfBirth"
+          ? new Date(event.target.value).toISOString()
+          : event.target.value,
+    });
   };
 
   const handleSave = (event) => {
     event.preventDefault();
     setLoader(true);
     setError(false);
-    const updatedData = {
-      ...userData,
-      dateOfBirth: new Date(userData.dateOfBirth).toISOString(),
-    };
-    delete updatedData.role;
-    delete updatedData.id;
     axios
-      .put(`${BASE_URL}/user/edit/${userData.id}`, updatedData)
+      .put(`${BASE_URL}/user/${userData.id}`, updatedData)
       .then((res) => {
         console.log(res);
-        authContext.userDataHandler(userData);
+        authContext.userDataHandler({ ...userData, ...updatedData });
         setLoader(false);
       })
       .catch((err) => {
@@ -50,7 +52,7 @@ export const PatientProfile = () => {
     setLoader(true);
     setError(false);
     axios
-      .delete(`${BASE_URL}/user/delete/${userData.id}`)
+      .delete(`${BASE_URL}/user/${userData.id}`)
       .then((res) => {
         console.log(res);
         authContext.logout();
@@ -153,6 +155,7 @@ export const PatientProfile = () => {
                 color="primary"
                 fullWidth
                 onClick={handleSave}
+                disabled={Object.keys(updatedData).length === 0}
               >
                 Save Data
               </Button>

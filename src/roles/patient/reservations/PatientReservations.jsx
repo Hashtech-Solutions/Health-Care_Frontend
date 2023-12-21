@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../shared/API";
+import { useAuth } from "../../../hooks/useAuth";
 
 // Components
 import {
@@ -23,19 +24,20 @@ import { TestingData } from "../../doctor/reservations/Data";
 export const PatientReservations = () => {
   const [appointments, setAppointments] = useState([]);
   const [status, setStatus] = useState("loading");
+  const authContext = useAuth();
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/appointment/all`)
+      .get(`${BASE_URL}/book/patient/${authContext.userData.id}`)
       .then((res) => {
         setAppointments(res.data);
         setStatus(res.data.length > 0 ? "success" : "empty");
       })
       .catch((err) => {
         console.log(err);
-        setStatus("success");
+        setStatus("error");
       });
-  }, []);
+  }, [authContext.userData.id]);
 
   return (
     <MainContainer title="Appointments">
