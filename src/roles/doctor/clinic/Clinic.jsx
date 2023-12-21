@@ -1,17 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../shared/API";
 import { useAuth } from "../../../hooks/useAuth";
 
 // Components
-import {
-  Grid,
-  Button,
-  Box,
-  Alert,
-  Typography,
-  TextField,
-} from "@mui/material";
+import { Grid, Button, Box, Alert, Typography, TextField } from "@mui/material";
 import { MainContainer } from "../../../components/MainContainer";
 import { BackdropLoader } from "../../../components/BackdropLoader";
 import { TimeSlotPicker } from "../../../pages/TimeSlotPicker";
@@ -34,6 +27,25 @@ export const Clinic = () => {
 
     return formattedTime;
   };
+
+  function convertTimeStringToDate(timeString) {
+    const [hours, minutes] = timeString.split(":").map(Number);
+    const dateObject = new Date();
+    dateObject.setHours(hours, minutes, 0, 0);
+    return dateObject;
+  }
+
+  useEffect(() => {
+    setOpeningTime(
+      convertTimeStringToDate(authContext.userData.workingHoursStart)
+    );
+    setClosingTime(
+      convertTimeStringToDate(authContext.userData.workingHoursEnd)
+    );
+  }, [
+    authContext.userData.workingHoursStart,
+    authContext.userData.workingHoursEnd,
+  ]);
 
   const handleSave = (event) => {
     event.preventDefault();
@@ -74,12 +86,12 @@ export const Clinic = () => {
               >
                 <TimeSlotPicker
                   label="Opening Time"
-                  value={openingTime}
+                  time={openingTime}
                   timeSetter={setOpeningTime}
                 />
                 <TimeSlotPicker
                   label="Closing Time"
-                  value={closingTime}
+                  time={closingTime}
                   timeSetter={setClosingTime}
                 />
               </Grid>

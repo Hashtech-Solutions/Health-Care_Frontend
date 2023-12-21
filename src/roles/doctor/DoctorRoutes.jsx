@@ -8,7 +8,6 @@ import { SingleSpecialization } from "../../pages/SingleSpecialization";
 import { Clinic } from "./clinic/Clinic";
 import { Footer } from "../../components/Footer";
 import { NotFound } from "../../pages/NotFound";
-import { DoctorView } from "../patient/doctor/DoctorView";
 
 export function DoctorRoutes() {
   return (
@@ -19,7 +18,6 @@ export function DoctorRoutes() {
         <Route path="profile" element={<DoctorProfile />} />
         <Route path="clinic" element={<Clinic />} />
         <Route path="appointments" element={<DoctorReservations />} />
-        <Route path="doctors/:id" element={<DoctorView />} />
         <Route path="specializations" element={<AllSpecializations />} />
         <Route path="specializations/:id" element={<SingleSpecialization />} />
         <Route path="*" element={<NotFound />} />

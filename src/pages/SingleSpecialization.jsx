@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { BASE_URL } from "../shared/API";
 import { Categories } from "../shared/data/Categories";
+import { useAuth } from "../hooks/useAuth";
 
 // Components
 import { SpecializationContainer } from "../components/SpecializationContainer";
@@ -15,6 +16,7 @@ export const SingleSpecialization = () => {
   const [status, setStatus] = useState("loading");
   const { id } = useParams();
   const item = Categories.find((item) => item.value === id);
+  const authContext = useAuth();
 
   useEffect(() => {
     axios
@@ -30,6 +32,9 @@ export const SingleSpecialization = () => {
       });
   }, [id]);
 
+  if (authContext.role === "DOCTOR") {
+    return <SpecializationContainer item={item}></SpecializationContainer>;
+  }
   return (
     <SpecializationContainer item={item}>
       <Typography variant="h5" gutterBottom sx={{ mt: "40px" }}>
