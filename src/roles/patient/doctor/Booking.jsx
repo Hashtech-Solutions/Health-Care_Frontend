@@ -15,6 +15,7 @@ export const Booking = (props) => {
     axios
       .get(`${BASE_URL}/book/availble_slots/${props.doctor.id}`)
       .then((res) => {
+        console.log(res);
         setDates(res.data);
         setStatus("success");
       })

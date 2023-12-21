@@ -136,7 +136,7 @@ export const BookingSlot = (props) => {
         <DialogTitle>{"Thank You"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Thank you for using Veezeta to book your appointment.
+            Thank you for using Health Care to book your appointment.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
