@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../shared/API";
 import { Categories } from "../shared/data/Categories";
-import { TestingDoctors } from "../shared/data/Testing";
 
 // Components
 import {
@@ -28,43 +27,40 @@ export const CardGrid = () => {
     axios
       .get(`${BASE_URL}/doctor/all`)
       .then((res) => {
+        console.log(res);
         setDoctors(res.data);
         setFilteredDoctors(res.data);
         setStatus(res.data.length > 0 ? "success" : "empty");
       })
       .catch((err) => {
         console.error(err);
-        setStatus("success");
-        setFilteredDoctors(TestingDoctors);
+        setStatus("error");
       });
   }, []);
 
-  useEffect(() => {
-    if (search === "") {
-      setFilteredDoctors(TestingDoctors);
-    } else {
-      const filtered = TestingDoctors.filter((doctor) => {
-        return (
-          doctor.firstName.toLowerCase().includes(search.toLowerCase()) ||
-          doctor.lastName.toLowerCase().includes(search.toLowerCase())
-        );
-      });
-      setFilteredDoctors(filtered);
-    }
-  }, [search, doctors]);
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+    const filteredDoctors = doctors.filter(
+      (doctor) =>
+        doctor.firstName
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase()) ||
+        doctor.lastName.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    setFilteredDoctors(filteredDoctors);
+  };
 
-  useEffect(() => {
-    if (category === "all") {
-      setSearch("");
-      setFilteredDoctors(TestingDoctors);
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+    if (event.target.value === "all") {
+      setFilteredDoctors(doctors);
     } else {
-      setSearch("");
-      const filtered = TestingDoctors.filter((doctor) => {
-        return doctor.specialization === category;
-      });
-      setFilteredDoctors(filtered);
+      const filteredDoctors = doctors.filter(
+        (doctor) => doctor.spec === event.target.value.toLowerCase()
+      );
+      setFilteredDoctors(filteredDoctors);
     }
-  }, [category, doctors]);
+  };
 
   return (
     <>
@@ -84,7 +80,7 @@ export const CardGrid = () => {
             placeholder="Write a doctor name here..."
             variant="outlined"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={handleSearchChange}
           />
           <FormControl
             sx={{
@@ -95,7 +91,7 @@ export const CardGrid = () => {
             <Select
               label="Specialization"
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={handleCategoryChange}
             >
               <MenuItem value="all">All Specializations</MenuItem>
               {Categories.map((category) => (

@@ -210,6 +210,7 @@ export const DoctorProfile = () => {
                 color="primary"
                 fullWidth
                 onClick={handleSave}
+                disabled={Object.keys(updatedData).length === 0}
               >
                 Save Data
               </Button>

@@ -10,7 +10,6 @@ import {
   IconButton,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import { TestingDoctors } from "../shared/data/Testing";
 
 export const SpecializationGrid = ({ specializationDoctors }) => {
   const authContext = useAuth();
@@ -33,7 +32,7 @@ export const SpecializationGrid = ({ specializationDoctors }) => {
         paddingBottom: "20px",
       }}
     >
-      {TestingDoctors.map((doctor) => (
+      {specializationDoctors.map((doctor) => (
         <ImageListItem
           key={doctor.id}
           sx={{
@@ -41,7 +40,7 @@ export const SpecializationGrid = ({ specializationDoctors }) => {
           }}
         >
           <img
-            src={doctor.image || `${BASE_URL}/uploads/${doctor.image}`}
+            src={`${BASE_URL}/uploads/${doctor.image}`}
             alt={doctor.firstName + " " + doctor.lastName}
             loading="lazy"
             style={{

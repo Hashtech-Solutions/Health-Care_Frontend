@@ -136,8 +136,9 @@ export const PatientSignup = () => {
                   variant="contained"
                   color="primary"
                   fullWidth
+                  disabled={loader}
                 >
-                  Sign Up
+                  {loader ? "Signing up..." : " Sign Up"}
                 </Button>
               </Grid>
               <Grid item>

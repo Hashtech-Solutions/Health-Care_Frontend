@@ -15,7 +15,7 @@ export const SingleSpecialization = () => {
   const [doctors, setDoctors] = useState([]);
   const [status, setStatus] = useState("loading");
   const { id } = useParams();
-  const item = Categories.find((item) => item.value === id);
+  const specialization = Categories.find((item) => item.value === id);
   const authContext = useAuth();
 
   useEffect(() => {
@@ -23,20 +23,25 @@ export const SingleSpecialization = () => {
       .get(`${BASE_URL}/doctor/all`)
       .then((res) => {
         console.log(res);
-        setDoctors(res.data);
+        const filteredDoctors = res.data.filter(
+          (doctor) => doctor.spec === specialization.name.toLowerCase()
+        );
+        setDoctors(filteredDoctors);
         setStatus(res.data.length > 0 ? "success" : "empty");
       })
       .catch((err) => {
         console.log(err);
         setStatus("error");
       });
-  }, [id]);
+  }, [id, specialization.name]);
 
   if (authContext.role === "DOCTOR") {
-    return <SpecializationContainer item={item}></SpecializationContainer>;
+    return (
+      <SpecializationContainer item={specialization}></SpecializationContainer>
+    );
   }
   return (
-    <SpecializationContainer item={item}>
+    <SpecializationContainer item={specialization}>
       <Typography variant="h5" gutterBottom sx={{ mt: "40px" }}>
         Specialization Doctors:
       </Typography>

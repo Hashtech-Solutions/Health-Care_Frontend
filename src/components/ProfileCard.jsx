@@ -48,10 +48,7 @@ export const ProfileCard = (props) => {
           >
             <img
               alt="Profile"
-              src={
-                props.doctor.image ||
-                `${BASE_URL}/uploads/${props.doctor.image}`
-              }
+              src={`${BASE_URL}/uploads/${props.doctor.image}`}
               style={{ width: "120px", borderRadius: "50%", height: "120px" }}
             />
           </Grid>
@@ -63,7 +60,6 @@ export const ProfileCard = (props) => {
             lg={8}
             sx={{ padding: "40px 0 0 40px" }}
           >
-            {/* Column: Text Widgets */}
             <Grid container direction="column" spacing={2}>
               <Grid item>
                 <Typography variant="h4">
@@ -72,7 +68,8 @@ export const ProfileCard = (props) => {
               </Grid>
               <Grid item>
                 <Typography variant="h6">
-                  {props.doctor.specialization}
+                  {props.doctor.spec.charAt(0).toUpperCase() +
+                    props.doctor.spec.slice(1)}
                 </Typography>
               </Grid>
               <Grid item>
@@ -90,8 +87,6 @@ export const ProfileCard = (props) => {
               </Grid>
             </Grid>
           </Grid>
-
-          {/* Add more Grid items for other columns if needed */}
         </Grid>
       </CardActionArea>
     </Grid>
