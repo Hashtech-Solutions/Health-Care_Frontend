@@ -14,7 +14,7 @@ export const Clinic = () => {
   const [closingTime, setClosingTime] = useState(new Date());
   const [period, setPeriod] = useState(0);
   const [loader, setLoader] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const authContext = useAuth();
 
   const timeFormatter = (timestamp) => {
@@ -42,9 +42,11 @@ export const Clinic = () => {
     setClosingTime(
       convertTimeStringToDate(authContext.userData.workingHoursEnd)
     );
+    setPeriod(authContext.userData.bookingDuration * 60);
   }, [
     authContext.userData.workingHoursStart,
     authContext.userData.workingHoursEnd,
+    authContext.userData.bookingDuration,
   ]);
 
   const handleSave = (event) => {
@@ -63,8 +65,13 @@ export const Clinic = () => {
         setLoader(false);
       })
       .catch((err) => {
-        setError(true);
+        console.log(err);
         setLoader(false);
+        if (err.response.data.message) {
+          setError(err.response.data.message);
+        } else {
+          setError("Something went wrong, please try again later!");
+        }
       });
   };
 
@@ -104,7 +111,7 @@ export const Clinic = () => {
                 fullWidth
                 type="number"
                 name="period"
-                value={period || 15}
+                value={period || ""}
                 onChange={(e) => setPeriod(e.target.value)}
               />
             </Grid>
@@ -122,7 +129,7 @@ export const Clinic = () => {
           </Grid>
           {error && (
             <Alert severity="error" sx={{ mt: "20px" }}>
-              Something went wrong please try again later!
+              {error}
             </Alert>
           )}
         </Box>
