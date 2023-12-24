@@ -13,7 +13,7 @@ export const ProfileDetailsCard = (props) => {
         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         backgroundColor: "white",
         borderRadius: "20px",
-        height: "150px",
+        height: "auto",
       }}
     >
       <Grid container>
@@ -24,7 +24,7 @@ export const ProfileDetailsCard = (props) => {
           md={2}
           lg={2}
           sx={{
-            padding: "40px 0 0 40px",
+            padding: "40px 0 40px 40px",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -40,18 +40,18 @@ export const ProfileDetailsCard = (props) => {
           sm={8}
           md={8}
           lg={8}
-          sx={{ padding: "40px 0 0 40px" }}
+          sx={{ padding: "40px 0 40px 40px" }}
         >
-          {/* Column: Text Widgets */}
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <Typography variant="h6">About The Doctor</Typography>
-              <Typography variant="body1">{props.description}</Typography>
+              <Typography variant="body1">
+                {props.description ||
+                  "This doctor has not provided a description yet."}
+              </Typography>
             </Grid>
           </Grid>
         </Grid>
-
-        {/* Add more Grid items for other columns if needed */}
       </Grid>
     </Grid>
   );

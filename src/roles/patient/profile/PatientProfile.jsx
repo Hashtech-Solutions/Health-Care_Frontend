@@ -15,6 +15,11 @@ export const PatientProfile = () => {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
 
+  const formatDate = (date) => {
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+    return formattedDate;
+  };
+
   const handleFieldChange = (event) => {
     setUserData({
       ...userData,
@@ -114,7 +119,7 @@ export const PatientProfile = () => {
                 fullWidth
                 label="Date of Birth"
                 name="dateOfBirth"
-                value={userData.dateOfBirth || ""}
+                value={formatDate(userData.dateOfBirth) || ""}
                 onChange={handleFieldChange}
                 type="date"
                 required
